@@ -7,7 +7,9 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 public class VendingApplication {
     
     public static void main(String[] args) {
+        
         SpringApplication.run(VendingApplication.class, args);
     }
+    
     
 }
