@@ -1,6 +1,5 @@
 package pl.coderslab.vending.user.service;
 
-
 import org.springframework.security.core.userdetails.UserDetailsService;
 import pl.coderslab.vending.user.dto.UserRegistrationDto;
 import pl.coderslab.vending.user.entity.User;
