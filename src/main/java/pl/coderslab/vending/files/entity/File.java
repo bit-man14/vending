@@ -1,6 +1,8 @@
 package pl.coderslab.vending.files.entity;
 
 import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -9,7 +11,7 @@ import javax.persistence.Id;
 import javax.persistence.Lob;
 import javax.persistence.Table;
 
-@Data
+
 @Entity
 @Table(name = "files")
 public class File {
@@ -27,6 +29,30 @@ public class File {
         super();
         this.fileName = fileName;
         this.fileType = fileType;
+        this.data = data;
+    }
+
+    public String getFileName() {
+        return fileName;
+    }
+
+    public void setFileName(String fileName) {
+        this.fileName = fileName;
+    }
+
+    public String getFileType() {
+        return fileType;
+    }
+
+    public void setFileType(String fileType) {
+        this.fileType = fileType;
+    }
+
+    public byte[] getData() {
+        return data;
+    }
+
+    public void setData(byte[] data) {
         this.data = data;
     }
 }

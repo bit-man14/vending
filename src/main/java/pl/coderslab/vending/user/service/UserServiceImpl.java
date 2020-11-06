@@ -14,33 +14,60 @@ import pl.coderslab.vending.user.entity.User;
 import pl.coderslab.vending.user.repository.UserRepository;
 
 import java.util.Collection;
+import java.util.List;
+import java.util.Optional;
 import java.util.Set;
 import java.util.stream.Collectors;
 
 @Service
 public class UserServiceImpl implements UserService {
-    
+
     @Autowired
     private UserRepository userRepository;
-    
+
     @Autowired
     private BCryptPasswordEncoder passwordEncoder;
-    
+
     public User findByEmail(String email) {
         return userRepository.findByEmail(email);
     }
-    
+
     public User save(UserRegistrationDto registration) {
         User user = new User();
         user.setName(registration.getName());
         user.setEmail(registration.getEmail());
         user.setPassword(passwordEncoder.encode(registration.getPassword()));
         //user.setRoles(Arrays.asList(new Role("READER")));
-        Set<Role> roles= (Set<Role>) user.getRoles();
+        Set<Role> roles = (Set<Role>) user.getRoles();
 
         return userRepository.save(user);
     }
-    
+
+    @Override
+    public List<User> allUsers() {
+        return userRepository.findAll();
+    }
+
+    @Override
+    public Optional<User> userById(Long id) {
+        return userRepository.findById(id);
+    }
+
+    @Override
+    public void addUser(User user) {
+        userRepository.save(user);
+    }
+
+    @Override
+    public void deleteById(Long id) {
+        userRepository.deleteById(id);
+    }
+
+    @Override
+    public void update(User user) {
+
+    }
+
     @Override
     public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
         User user = userRepository.findByEmail(email);
@@ -52,7 +79,7 @@ public class UserServiceImpl implements UserService {
 //                user.getPassword(),
 //                mapRolesToAuthorities(user.getRoles()));
     }
-    
+
     private Collection<? extends GrantedAuthority> mapRolesToAuthorities(Collection<Role> roles) {
         return roles.stream()
                 .map(role -> new SimpleGrantedAuthority(role.getName()))
