@@ -1,6 +1,6 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
-
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+<html lang="en">
 <head>
     <meta charset="utf-8"/>
     <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
@@ -22,7 +22,7 @@
                     class="icon-bar"></span> <span class="icon-bar"></span> <span
                     class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="#" th:href="@{/}">Registration and Login Module</a>
+<!--            <a class="navbar-brand" href="#" th:href="@{/}">Registration and Login Module</a>-->
             <a class="navbar-brand" href="#" th:href="@{/getfiles}">Upload files</a>
 
         </div>
@@ -42,6 +42,8 @@
 
     <p>
         Welcome <span sec:authentication="principal.username">User</span>
+        &nbsp;
+        <span sec:authentication="principal.authorities"></span>
     </p>
 </div>
 

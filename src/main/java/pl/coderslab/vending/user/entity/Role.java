@@ -1,26 +1,45 @@
 package pl.coderslab.vending.user.entity;
 
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-@Data
+import javax.persistence.*;
+import java.util.HashSet;
+import java.util.Set;
+
+
 @AllArgsConstructor
-@NoArgsConstructor
+
 @Entity
+@Table(name = "roles")
 public class Role {
     
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    //@GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "role_id")
     private Long id;
     private String name;
     
     public Role(String name) {
         this.name = name;
     }
+
+    public Role() {
+
+    }
+    @ManyToMany(mappedBy = "roles")
+    private Set<User> users = new HashSet<>();
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
 }

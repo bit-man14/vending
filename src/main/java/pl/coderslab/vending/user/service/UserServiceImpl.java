@@ -13,8 +13,8 @@ import pl.coderslab.vending.user.entity.Role;
 import pl.coderslab.vending.user.entity.User;
 import pl.coderslab.vending.user.repository.UserRepository;
 
-import java.util.Arrays;
 import java.util.Collection;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 @Service
@@ -35,7 +35,9 @@ public class UserServiceImpl implements UserService {
         user.setName(registration.getName());
         user.setEmail(registration.getEmail());
         user.setPassword(passwordEncoder.encode(registration.getPassword()));
-        user.setRoles(Arrays.asList(new Role("ROLE_USER")));
+        //user.setRoles(Arrays.asList(new Role("READER")));
+        Set<Role> roles= (Set<Role>) user.getRoles();
+
         return userRepository.save(user);
     }
     
@@ -45,9 +47,10 @@ public class UserServiceImpl implements UserService {
         if (user == null) {
             throw new UsernameNotFoundException("Invalid user email or password.");
         }
-        return new org.springframework.security.core.userdetails.User(user.getEmail(),
-                user.getPassword(),
-                mapRolesToAuthorities(user.getRoles()));
+        return new MyUserDetails(user);
+//        return new org.springframework.security.core.userdetails.User(user.getEmail(),
+//                user.getPassword(),
+//                mapRolesToAuthorities(user.getRoles()));
     }
     
     private Collection<? extends GrantedAuthority> mapRolesToAuthorities(Collection<Role> roles) {

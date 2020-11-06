@@ -1,22 +1,16 @@
 package pl.coderslab.vending.machine.entity;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
+import pl.coderslab.vending.product.entity.Product;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.PrePersist;
-import javax.persistence.PreUpdate;
-import javax.persistence.Table;
+import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import java.time.LocalDateTime;
+import java.util.Collection;
 import java.util.Date;
 
-@Data
+@Setter
+@Getter
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
@@ -31,14 +25,34 @@ public class Machine {
     @NotBlank
     private String type;
     private String serial;
-    @Column(name = "inst_date")
+    //@Column(name = "inst_date")
     private Date instDate;
-    
+    private int shelves;
+    private int slotsPerShelf;
+//
+//    @OneToMany(cascade=CascadeType.ALL, fetch=FetchType.LAZY)
+//    private List<Integer> getValues() {
+//        return values;
+//    }
+
+
+    @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @JoinTable(
+            name = "machines_products",
+            joinColumns = @JoinColumn(
+                    name = "machine_id", referencedColumnName = "id"),
+            inverseJoinColumns = @JoinColumn(
+                    name = "product_id", referencedColumnName = "id"))
+    private Collection<Product> products;
+
+
     @Column(name = "created_on")
     private LocalDateTime createdOn;
     @Column(name = "updated_on")
     private LocalDateTime updatedOn;
-  
+
+
+
     @PrePersist
     public void prePersist() {
         createdOn = LocalDateTime.now();

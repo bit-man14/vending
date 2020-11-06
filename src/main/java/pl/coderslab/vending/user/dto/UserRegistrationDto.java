@@ -1,35 +1,71 @@
 package pl.coderslab.vending.user.dto;
 
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotEmpty;
 
 
-@Data
-@AllArgsConstructor
-@NoArgsConstructor
 public class UserRegistrationDto {
-    
+
     @NotEmpty
     private String name;
-   
+
     @NotEmpty
     private String password;
-    
-    @NotEmpty
+
+
     private String confirmPassword;
-    
+
     @Email
     @NotEmpty
     private String email;
-    
+
+    public UserRegistrationDto(@NotEmpty String name, @NotEmpty String password, String confirmPassword, @Email @NotEmpty String email, @Email String confirmEmail) {
+        this.name = name;
+        this.password = password;
+        this.confirmPassword = confirmPassword;
+        this.email = email;
+        this.confirmEmail = confirmEmail;
+    }
+
     @Email
-    @NotEmpty
     private String confirmEmail;
-    
-   
+
+    public String getConfirmPassword() {
+        return confirmPassword;
+    }
+
+    public String getConfirmEmail() {
+        return confirmEmail;
+    }
+
+    public UserRegistrationDto() {
+    }
+
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
 }
