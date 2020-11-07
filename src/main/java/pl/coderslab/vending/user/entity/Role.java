@@ -42,4 +42,15 @@ public class Role {
         return id;
     }
 
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public Set<User> getUsers() {
+        return users;
+    }
+
+    public void setUsers(Set<User> users) {
+        this.users = users;
+    }
 }

@@ -13,10 +13,7 @@ import pl.coderslab.vending.user.entity.Role;
 import pl.coderslab.vending.user.entity.User;
 import pl.coderslab.vending.user.repository.UserRepository;
 
-import java.util.Collection;
-import java.util.List;
-import java.util.Optional;
-import java.util.Set;
+import java.util.*;
 import java.util.stream.Collectors;
 
 @Service
@@ -34,13 +31,18 @@ public class UserServiceImpl implements UserService {
 
     public User save(UserRegistrationDto registration) {
         User user = new User();
+        Role role = new Role();
+        //role.setName("READER");//test
         user.setName(registration.getName());
         user.setEmail(registration.getEmail());
         user.setPassword(passwordEncoder.encode(registration.getPassword()));
+        user.setActive(true);
+
         //user.setRoles(Arrays.asList(new Role("READER")));
         Set<Role> roles = (Set<Role>) user.getRoles();
 
         return userRepository.save(user);
+
     }
 
     @Override

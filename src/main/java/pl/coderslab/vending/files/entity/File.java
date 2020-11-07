@@ -55,4 +55,12 @@ public class File {
     public void setData(byte[] data) {
         this.data = data;
     }
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
 }

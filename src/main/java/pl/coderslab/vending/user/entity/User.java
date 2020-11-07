@@ -2,19 +2,7 @@ package pl.coderslab.vending.user.entity;
 
 import lombok.*;
 
-import javax.persistence.CascadeType;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
-import javax.persistence.ManyToMany;
-import javax.persistence.PrePersist;
-import javax.persistence.PreUpdate;
-import javax.persistence.Table;
+import javax.persistence.*;
 import javax.validation.constraints.Email;
 import java.time.LocalDateTime;
 import java.util.Collection;
@@ -33,7 +21,6 @@ public class User {
     private Long id;
     //@Column(name = "name", length = 100, nullable = false)
     private String name;
-    //private String role;
     private String password;
     @Email
     private String email;
@@ -68,15 +55,6 @@ public class User {
         updatedOn = LocalDateTime.now();
     }
 
-    public Collection<Role> getRoles() {
-        return roles;
-    }
-
-    public void setRoles(Set<Role> roles) {
-        this.roles = roles;
-    }
-
-
     public String getName() {
         return name;
     }
@@ -108,4 +86,32 @@ public class User {
     public void setActive(boolean active) {
         this.active = active;
     }
+
+    public Set<Role> getRoles() {
+        return roles;
+    }
+
+    public void setRoles(Set<Role> roles) {
+        this.roles = roles;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+//
+//    public Collection<Role> getRoles() {
+//        return roles;
+//    }
+//
+//    public void setRoles(Set<Role> roles) {
+//
+//        this.roles = roles;
+//        //roles.add(new Role("READER"));
+//    }
+
+
 }
