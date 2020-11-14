@@ -4,6 +4,8 @@ import lombok.*;
 
 import javax.persistence.*;
 import javax.validation.constraints.Email;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Size;
 import java.time.LocalDateTime;
 import java.util.Collection;
 import java.util.HashSet;
@@ -20,6 +22,8 @@ public class User {
     @Column(name = "user_id")
     private Long id;
     //@Column(name = "name", length = 100, nullable = false)
+    @NotBlank
+    @Size(min = 5)
     private String name;
     private String password;
     @Email

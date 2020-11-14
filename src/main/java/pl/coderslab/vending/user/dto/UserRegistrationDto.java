@@ -1,8 +1,6 @@
 package pl.coderslab.vending.user.dto;
 
 
-import lombok.*;
-
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotEmpty;
 
@@ -22,12 +20,11 @@ public class UserRegistrationDto {
     @NotEmpty
     private String email;
 
-    public UserRegistrationDto(@NotEmpty String name, @NotEmpty String password, String confirmPassword, @Email @NotEmpty String email, @Email String confirmEmail) {
+    public UserRegistrationDto(@NotEmpty String name, @NotEmpty String password, String confirmPassword, @Email @NotEmpty String email) {
         this.name = name;
         this.password = password;
         this.confirmPassword = confirmPassword;
         this.email = email;
-        this.confirmEmail = confirmEmail;
     }
 
     @Email
@@ -37,9 +34,6 @@ public class UserRegistrationDto {
         return confirmPassword;
     }
 
-    public String getConfirmEmail() {
-        return confirmEmail;
-    }
 
     public UserRegistrationDto() {
     }
