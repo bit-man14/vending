@@ -4,6 +4,7 @@ package pl.coderslab.vending.user.entity;
 import lombok.*;
 
 import javax.persistence.*;
+import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -15,7 +16,7 @@ import java.util.Set;
 public class Role {
     
     @Id
-    //@GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "role_id")
     private Long id;
     private String name;
@@ -28,7 +29,8 @@ public class Role {
 
     }
     @ManyToMany(mappedBy = "roles")
-    private Set<User> users = new HashSet<>();
+    private Collection<User> users;
+//    private Set<User> users = new HashSet<>();
 
     public String getName() {
         return name;
@@ -46,11 +48,19 @@ public class Role {
         this.id = id;
     }
 
-    public Set<User> getUsers() {
+    public Collection<User> getUsers() {
         return users;
     }
 
-    public void setUsers(Set<User> users) {
+    public void setUsers(Collection<User> users) {
         this.users = users;
     }
+//
+//    public Set<User> getUsers() {
+//        return users;
+//    }
+//
+//    public void setUsers(Set<User> users) {
+//        this.users = users;
+//    }
 }
