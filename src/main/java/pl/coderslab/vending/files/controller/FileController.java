@@ -19,32 +19,40 @@ import java.util.List;
 
 @Controller
 public class FileController {
-    
+
     @Autowired
     private FileService fileService;
-    
+
     @GetMapping("/getfiles")
     public String get(Model model) {
         List<File> files = fileService.getFiles();
         model.addAttribute("files", files);
         return "file";
     }
-    
+
     @PostMapping("/uploadFiles")
     public String uploadMultipleFiles(@RequestParam("files") MultipartFile[] files) {
-        for (MultipartFile file: files) {
+        for (MultipartFile file : files) {
             fileService.saveFile(file);
-            
+
         }
         return "redirect:/getfiles";
     }
+
     @GetMapping("/downloadFile/{fileId}")
-    public ResponseEntity<ByteArrayResource> downloadFile(@PathVariable Integer fileId){
+    public ResponseEntity<ByteArrayResource> downloadFile(@PathVariable Integer fileId) {
         File file = fileService.getFile(fileId).get();
         return ResponseEntity.ok()
                 .contentType(MediaType.parseMediaType(file.getFileType()))
-                .header(HttpHeaders.CONTENT_DISPOSITION,"attachment:filename=\""+file.getFileName()+"\"")
+                .header(HttpHeaders.CONTENT_DISPOSITION, "attachment:filename=\"" + file.getFileName() + "\"")
                 .body(new ByteArrayResource(file.getData()));
     }
-    
+
+    @GetMapping("/deletefile/{fileId}")
+    public String deleteFile(@PathVariable Integer fileId) {
+        fileService.deleteFile(fileId);
+        return "redirect:/getfiles";
+    }
+
+
 }

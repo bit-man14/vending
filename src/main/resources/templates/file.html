@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
 <html lang="en">
 <head>
     <meta charset="utf-8"/>
@@ -39,7 +39,7 @@
             <form id="uploadFiles" name="uploadFiles" method="post" th:action=@{/uploadFiles}
                   encType="multipart/form-data">
                 <input type="file" name="files" multiple required/>
-                <button type="submit">Submit</button>
+                <button class="btn btn-outline-primary" type="submit">Submit</button>
             </form>
         </div>
 
@@ -50,19 +50,31 @@
                 <tr>
                     <th>Id</th>
                     <th>Name</th>
-                    <th>Download Link</th>
+                    <div th:if="${#authorization.expression('hasAnyAuthority(''ADMIN'',''USER'')')}">
+                        <th>Download Link</th>
+                    </div>
+                    <div th:if="${#authorization.expression('hasAuthority(''ADMIN'')')}">
+                        <th>Delete Link</th>
+                    </div>
                 </tr>
                 </thead>
                 <tbody>
                 <tr th:each="file:${files}">
                     <td th:text="${file.id}"/>
                     <td th:text="${file.fileName}"/>
-                    <td><a th:href="@{'/downloadFile/'+${file.id}}">Download</a></td>
+                    <div th:if="${#authorization.expression('hasAnyAuthority(''ADMIN'',''USER'')')}">
+                        <td><a th:href="@{'/downloadFile/'+${file.id}}">Download</a></td>
+                    </div>
+                    <div th:if="${#authorization.expression('hasAuthority(''ADMIN'')')}">
+                        <td><a th:href="@{'/deletefile/'+${file.id}}">Delete</a></td>
+                    </div>
+
+
                 </tr>
                 </tbody>
             </table>
         </div>
-        </div>
+    </div>
 
 </div>
 
@@ -72,3 +84,10 @@
 
 </body>
 </html>
+<!--visibilty for roles-->
+<!--<div th:if="${#authorization.expression('hasAuthority(''ADMIN'')')}">ADMIN</div>-->
+<!--<div th:if="${#authorization.expression('hasAuthority(''USER'')')}">USER</div>-->
+<!--<div th:if="${#authorization.expression('isAuthenticated()')}">-->
+<!--    Text visible only to authenticated users.-->
+<!--</div>-->
+<!--</div>-->

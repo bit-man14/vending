@@ -1,7 +1,9 @@
 package pl.coderslab.vending.files.service;
 
+import org.apache.velocity.exception.ResourceNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
 import pl.coderslab.vending.files.entity.File;
 import pl.coderslab.vending.files.repository.FileRepository;
@@ -31,5 +33,9 @@ public class FileService {
     
     public List<File> getFiles() {
         return fileRepository.findAll();
+    }
+
+    public void deleteFile(Integer id) throws ResourceNotFoundException {
+        fileRepository.deleteById(id);
     }
 }
