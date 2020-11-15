@@ -34,7 +34,7 @@ public class UserRegistrationController {
     public String showRegistrationForm(Model model) {
         UserRegistrationDto newUser = new UserRegistrationDto();
         model.addAttribute("user", newUser);
-        return "registration1";
+        return "registration";
     }
 
     @PostMapping
@@ -42,12 +42,12 @@ public class UserRegistrationController {
                                       BindingResult result) {
         if (result.hasErrors()) {
             log.debug("Binding error");
-            return "registration1";
+            return "registration";
         }
         User existing = userService.findByEmail(userDto.getEmail());
         if (existing != null) {
             result.rejectValue("email", "duplicated.email");
-            return "registration1";
+            return "registration";
         }
 
 
