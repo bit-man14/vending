@@ -1,6 +1,7 @@
 package pl.coderslab.vending.user.dto;
 
 
+
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotEmpty;
 
@@ -20,15 +21,14 @@ public class UserRegistrationDto {
     @NotEmpty
     private String email;
 
-    public UserRegistrationDto(@NotEmpty String name, @NotEmpty String password, String confirmPassword, @Email @NotEmpty String email) {
+    public UserRegistrationDto(@NotEmpty String name, @Email @NotEmpty String email, @NotEmpty String password, String confirmPassword) {
         this.name = name;
+        this.email = email;
         this.password = password;
         this.confirmPassword = confirmPassword;
-        this.email = email;
+
     }
 
-    @Email
-    private String confirmEmail;
 
     public String getConfirmPassword() {
         return confirmPassword;
@@ -61,5 +61,9 @@ public class UserRegistrationDto {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public void setConfirmPassword(String confirmPassword) {
+        this.confirmPassword = confirmPassword;
     }
 }

@@ -14,6 +14,11 @@ import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 import org.springframework.validation.beanvalidation.LocalValidatorFactoryBean;
 import org.springframework.web.servlet.LocaleContextResolver;
 import org.springframework.web.servlet.i18n.SessionLocaleResolver;
+import org.thymeleaf.extras.springsecurity5.dialect.SpringSecurityDialect;
+import org.thymeleaf.spring5.SpringTemplateEngine;
+import org.thymeleaf.spring5.dialect.SpringStandardDialect;
+import org.thymeleaf.spring5.view.ThymeleafViewResolver;
+import org.thymeleaf.templateresolver.ServletContextTemplateResolver;
 import pl.coderslab.vending.user.service.UserService;
 import pl.coderslab.vending.user.service.UserServiceImpl;
 
@@ -29,7 +34,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http.authorizeRequests()
                 .antMatchers("/delete**").hasAuthority("ADMIN")
-                .antMatchers("edit**").hasAnyAuthority("ADMIN", "USER")
+                .antMatchers("/edit**").hasAnyAuthority("ADMIN", "USER")
                 .antMatchers(
                         "/registration**",
                         "/js/**",
@@ -89,4 +94,5 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
         localeResolver.setDefaultLocale(new Locale("pl", "PL"));
         return localeResolver;
     }
+
 }

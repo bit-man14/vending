@@ -21,12 +21,12 @@ public class User {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "user_id")
     private Long id;
-    //@Column(name = "name", length = 100, nullable = false)
     @NotBlank
     @Size(min = 5)
     private String name;
     private String password;
-    @Email
+    @NotBlank
+    @Email(message = "Please enter a valid e-mail address")
     private String email;
     private boolean active;
 
@@ -91,7 +91,7 @@ public class User {
         this.active = active;
     }
 
-   // public Set<Role> getRoles() {
+    // public Set<Role> getRoles() {
 //        return roles;
 //    }
 

@@ -13,10 +13,12 @@
     </Appenders>
     <!--suppress CheckTagEmptyBody, CheckTagEmptyBody -->
     <Loggers>
-        <Root level="info">
-<!--            <AppenderRef ref="Console" />-->
+        <Root level="debug">
+            <AppenderRef ref="Console"/>
             <AppenderRef ref="MyFile"/>
         </Root>
-        <Logger name="pl.coderslab"></Logger>
+        <Logger name="vending"></Logger>
     </Loggers>
 </Configuration>
+
+<!--        private static final Logger log = LogManager.getLogger(BookService.class);-->
