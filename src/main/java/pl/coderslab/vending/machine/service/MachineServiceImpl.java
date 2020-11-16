@@ -4,6 +4,7 @@ import org.apache.velocity.exception.ResourceNotFoundException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import pl.coderslab.vending.machine.entity.Machine;
+import pl.coderslab.vending.machine.entity.SlotConfig;
 import pl.coderslab.vending.machine.repository.MachineRepository;
 
 import java.util.List;
@@ -11,33 +12,47 @@ import java.util.List;
 @Service
 public class MachineServiceImpl implements MachineService {
     private final MachineRepository machineRepository;
-    
+
     public MachineServiceImpl(MachineRepository machineRepository) {
         this.machineRepository = machineRepository;
     }
-    
+
     @Override
     @Transactional
     public List<Machine> getMachines() {
         return machineRepository.findAll();
     }
-    
+
     @Override
     @Transactional
     public void saveMachine(Machine machine) {
         machineRepository.save(machine);
     }
-    
+
     @Override
     @Transactional
     public Machine getMachine(long id) throws ResourceNotFoundException {
         return machineRepository.findById(id).orElseThrow(
                 () -> new ResourceNotFoundException(String.valueOf(id)));
     }
-    
+
     @Override
     @Transactional
     public void deleteMachine(long id) throws ResourceNotFoundException {
         machineRepository.deleteById(id);
+    }
+
+    @Transactional
+    public void saveMachineConfig(Machine machine) {
+        int sh = machine.getShelves();
+        int sl = machine.getSlotsPerShelf();
+        SlotConfig slotConfig=new SlotConfig();
+        for(int i=0;i<sh;i++){
+            for(int j=0; j<sl;j++){
+
+            }
+        }
+
+        machineRepository.save(machine);
     }
 }

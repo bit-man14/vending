@@ -1,11 +1,15 @@
 package pl.coderslab.vending.product.entity;
 
 import lombok.*;
+import pl.coderslab.vending.machine.entity.Machine;
+import pl.coderslab.vending.user.entity.User;
 
 import javax.persistence.*;
-import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.*;
 import java.time.LocalDateTime;
+import java.util.Collection;
 import java.util.Date;
+import java.util.List;
 
 @Setter
 @Getter
@@ -19,12 +23,23 @@ public class Product {
     private Long id;
     //@Column(name = "name", length = 100, nullable = false)
     @NotBlank
+    @Size(min = 3)
     private String name;
-    private String packShape;
-    private Double price;
-    private int size;
+    private String packShape;//bottle, can , pouch, bar, box
 
-    
+    @Min(5)
+    @Max(19)
+    private int forSpiralSize;
+
+    @DecimalMin(value = "0.10")
+    @DecimalMax(value = "10.00")
+    @Digits(integer=2, fraction=2)
+    private Double price;
+
+
+    @ManyToMany(mappedBy = "products")
+    private List<Machine> machines;
+
     @Column(name = "created_on")
     private LocalDateTime createdOn;
     @Column(name = "updated_on")
