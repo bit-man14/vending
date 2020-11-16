@@ -6,16 +6,21 @@ import org.springframework.transaction.annotation.Transactional;
 import pl.coderslab.vending.machine.entity.Machine;
 import pl.coderslab.vending.machine.entity.SlotConfig;
 import pl.coderslab.vending.machine.repository.MachineRepository;
+import pl.coderslab.vending.machine.repository.SlotRepository;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
 public class MachineServiceImpl implements MachineService {
     private final MachineRepository machineRepository;
+    private final SlotRepository slotRepository;
 
-    public MachineServiceImpl(MachineRepository machineRepository) {
+    public MachineServiceImpl(MachineRepository machineRepository, SlotRepository slotRepository) {
         this.machineRepository = machineRepository;
+        this.slotRepository = slotRepository;
     }
+
 
     @Override
     @Transactional
@@ -43,16 +48,19 @@ public class MachineServiceImpl implements MachineService {
     }
 
     @Transactional
-    public void saveMachineConfig(Machine machine) {
+    public void saveMachineConfig(long id) {
+        Machine machine=getMachine(id);
         int sh = machine.getShelves();
         int sl = machine.getSlotsPerShelf();
-        SlotConfig slotConfig=new SlotConfig();
-        for(int i=0;i<sh;i++){
-            for(int j=0; j<sl;j++){
-
+        SlotConfig slotConfig = new SlotConfig();
+        List<Integer> slots = new ArrayList<>();
+        for (int i = 0; i < sh; i++) {
+            for (int j = 1; j <= sl; j++) {
+                slots.add(j*10+i);
             }
         }
-
-        machineRepository.save(machine);
+        slotConfig= (SlotConfig) slots;
+        System.out.println(slots);
+        slotRepository.save(slotConfig);
     }
 }

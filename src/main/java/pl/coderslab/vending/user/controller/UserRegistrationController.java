@@ -46,7 +46,7 @@ public class UserRegistrationController {
         }
         User existing = userService.findByEmail(userDto.getEmail());
         if (existing != null) {
-            result.rejectValue("email", "duplicated.email");
+            result.rejectValue("email", "duplicated_email");
             return "registration";
         }
 
