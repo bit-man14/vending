@@ -48,19 +48,19 @@ public class MachineServiceImpl implements MachineService {
     }
 
     @Transactional
-    public void saveMachineConfig(long id) {
-        Machine machine=getMachine(id);
+    public void saveSlotConfig(long mach_id) {
+        Machine machine=getMachine(mach_id);
         int sh = machine.getShelves();
         int sl = machine.getSlotsPerShelf();
-        SlotConfig slotConfig = new SlotConfig();
-        List<Integer> slots = new ArrayList<>();
+        SlotConfig slotConfig;
         for (int i = 0; i < sh; i++) {
             for (int j = 1; j <= sl; j++) {
-                slots.add(j*10+i);
+                slotConfig = new SlotConfig();
+                slotConfig.setSlotNo(j*10+i);
+                slotConfig.setSpiralSize(6);
+                slotConfig.setActive(true);
+                slotRepository.save(slotConfig);
             }
         }
-        slotConfig= (SlotConfig) slots;
-        System.out.println(slots);
-        slotRepository.save(slotConfig);
     }
 }

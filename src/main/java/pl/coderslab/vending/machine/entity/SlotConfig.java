@@ -16,6 +16,7 @@ public class SlotConfig {
     private Long id;
     private int slotNo;
     private int spiralSize;
+    private boolean isActive;
 
     public Long getId() {
         return id;
@@ -39,5 +40,13 @@ public class SlotConfig {
 
     public void setSpiralSize(int spiralSize) {
         this.spiralSize = spiralSize;
+    }
+
+    public boolean isActive() {
+        return isActive;
+    }
+
+    public void setActive(boolean active) {
+        isActive = active;
     }
 }
