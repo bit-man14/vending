@@ -29,7 +29,9 @@ public class Machine {
     private Date instDate;
     private int shelves;
     private int slotsPerShelf;
+
     @OneToMany
+    @JoinColumn(name="machine_id")
     private List<SlotConfig> slots=new ArrayList<>();
 
 

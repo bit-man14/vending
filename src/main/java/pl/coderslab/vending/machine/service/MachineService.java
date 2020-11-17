@@ -9,7 +9,8 @@ public interface MachineService {
     List<Machine> getMachines();
     
     void saveMachine(Machine machine);
-    
+    void saveSlot(long mach_id);
+
     Machine getMachine(long id) throws ResourceNotFoundException;
     
     void deleteMachine(long id) throws ResourceNotFoundException;

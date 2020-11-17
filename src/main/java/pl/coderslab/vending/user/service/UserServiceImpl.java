@@ -1,6 +1,7 @@
 package pl.coderslab.vending.user.service;
 
 
+import org.apache.velocity.exception.ResourceNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -8,6 +9,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import pl.coderslab.vending.user.dto.UserRegistrationDto;
 import pl.coderslab.vending.user.entity.Role;
 import pl.coderslab.vending.user.entity.User;
@@ -91,4 +93,9 @@ public class UserServiceImpl implements UserService {
     }
 
 
+    @Transactional
+    public User getUser(long id) throws ResourceNotFoundException {
+        return userRepository.findById(id).orElseThrow(
+                () -> new ResourceNotFoundException(String.valueOf(id)));
+    }
 }

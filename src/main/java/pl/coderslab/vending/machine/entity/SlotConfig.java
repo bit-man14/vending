@@ -49,4 +49,18 @@ public class SlotConfig {
     public void setActive(boolean active) {
         isActive = active;
     }
+
+@ManyToOne
+@JoinColumn(name="machine_id")
+private Machine machine;
+
+    @Override
+    public String toString() {
+        return "SlotConfig{" +
+                "id=" + id +
+                ", slotNo=" + slotNo +
+                ", spiralSize=" + spiralSize +
+                ", isActive=" + isActive +
+                '}';
+    }
 }
