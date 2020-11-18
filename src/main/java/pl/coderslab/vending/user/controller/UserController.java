@@ -68,7 +68,6 @@ public class UserController {
     public String registerUserAccount(@Valid UserRegistrationDto user,
                                       BindingResult result) {
         if (result.hasErrors()) {
-            //log.debug("Binding error");
             return "edituserform";
         }
 

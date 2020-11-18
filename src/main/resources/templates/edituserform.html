@@ -43,7 +43,7 @@
             <form th:action="@{/edituser}" th:object="${user}" method="post">
 
                 <span class="error-message" th:if="${#fields.hasGlobalErrors()}"
-                   th:each="error : ${#fields.errors('global')}" th:text="${error}">Validation error
+                      th:each="error : ${#fields.errors('global')}" th:text="${error}">Validation error
                 </span>
 
 
@@ -69,12 +69,18 @@
                     </span>
                 </div>
 
-                <div class="form-group" th:classappend="${#fields.hasErrors('password')}? 'has-error':''">
-                    <label for="password" class="control-label">Password</label>
-                    <input id="password" class="form-control" type="password" th:field="*{password}"/>
-                    <span class="error-message" th:each="error : ${#fields.errors('password')}" th:text="${error}">
-                        Validation error</span>
+                <div>
+                    <label>Married?</label>
+                    <input type="checkbox" th:field="*{isActive}"/>
+                    <span th:if="${#fields.hasErrors('isActive')}" th:errors="*{isActive}">Active</span>
                 </div>
+
+<!--                <div class="form-group" th:classappend="${#fields.hasErrors('isActive')}? 'has-error':''">-->
+<!--                    <label for="isActive" class="control-label">Active</label>-->
+<!--                    <input id="isActive" class="form-control" th:field="*{isActive}"/>-->
+<!--                    <span class="error-message" th:each="error : ${#fields.errors('isActive')}" th:text="${error}">-->
+<!--                        Validation error</span>-->
+<!--                </div>-->
 
 
                 <div class="form-group">
