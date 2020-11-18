@@ -12,6 +12,7 @@ public interface UserService extends UserDetailsService {
     User findByEmail(String email);
     
     User save(UserRegistrationDto registration);
+    void saveEdit(User user);
 
     List<User> allUsers();
 

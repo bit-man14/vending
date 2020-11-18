@@ -7,6 +7,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.ModelAndView;
 import pl.coderslab.vending.user.dto.UserRegistrationDto;
 import pl.coderslab.vending.user.entity.User;
 import pl.coderslab.vending.user.service.UserService;
@@ -64,14 +65,25 @@ public class UserController {
         model.addAttribute("user", user);
         return "edituserform";
     }
+    /////////
+//    @RequestMapping("/edituser/{id}")
+//    public ModelAndView showEditProductPage(@PathVariable Long id) {
+//        ModelAndView mav = new ModelAndView("edituserform");
+//        User user = userService.getUser(id);
+//        mav.addObject("user", user);
+//
+//        return mav;
+//    }
+
+    ////////
     @PostMapping("/edituser")
-    public String registerUserAccount(@Valid UserRegistrationDto user,
+    public String registerUserAccount(@Valid User user,
                                       BindingResult result) {
         if (result.hasErrors()) {
             return "edituserform";
         }
 
-        userService.save(user);
+        userService.saveEdit(user);
         return "redirect:/users";
     }
 }

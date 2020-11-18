@@ -50,6 +50,13 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
+    public void saveEdit(User user) {
+
+
+        userRepository.save(user);
+    }
+
+    @Override
     public List<User> allUsers() {
         return userRepository.findAll();
     }
@@ -82,7 +89,7 @@ public class UserServiceImpl implements UserService {
         }
 
         return new org.springframework.security.core.userdetails.User(
-                user.getEmail(), user.getPassword(), user.isActive(), true, true,
+                user.getEmail(), user.getPassword(), user.getIsActive(), true, true,
                 true, getAuthorities(user.getRoles()));
     }
 

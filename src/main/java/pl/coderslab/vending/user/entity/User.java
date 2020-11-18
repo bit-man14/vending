@@ -83,7 +83,7 @@ public class User {
         this.email = email;
     }
 
-    public boolean isActive() {
+    public boolean getIsActive() {
         return active;
     }
 

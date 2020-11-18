@@ -4,6 +4,7 @@ package pl.coderslab.vending.config;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.orm.hibernate5.LocalSessionFactoryBean;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -22,6 +23,7 @@ import org.thymeleaf.templateresolver.ServletContextTemplateResolver;
 import pl.coderslab.vending.user.service.UserService;
 import pl.coderslab.vending.user.service.UserServiceImpl;
 
+import javax.sql.DataSource;
 import java.util.Locale;
 
 @Configuration

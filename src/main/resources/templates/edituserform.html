@@ -46,7 +46,11 @@
                       th:each="error : ${#fields.errors('global')}" th:text="${error}">Validation error
                 </span>
 
-
+                <div class="form-group">
+                    <label for="id" class="control-label">Id</label>
+                    <input id="id" type="text" class="form-control" th:field="*{id}" readonly="readonly">
+<!--                    <div th:if="${#fields.hasErrors('id')}" th:errors="*{id}">Name Error</div>-->
+                </div>
                 <div class="form-group">
                     <label for="name" class="control-label">Name</label>
                     <input id="name" type="text" class="form-control" th:field="*{name}">
@@ -69,18 +73,15 @@
                     </span>
                 </div>
 
-                <div>
-                    <label>Married?</label>
-                    <input type="checkbox" th:field="*{isActive}"/>
-                    <span th:if="${#fields.hasErrors('isActive')}" th:errors="*{isActive}">Active</span>
-                </div>
 
-<!--                <div class="form-group" th:classappend="${#fields.hasErrors('isActive')}? 'has-error':''">-->
-<!--                    <label for="isActive" class="control-label">Active</label>-->
+
+                <div class="form-group" th:classappend="${#fields.hasErrors('isActive')}? 'has-error':''">
+                    <label for="isActive" class="control-label">Active</label>
 <!--                    <input id="isActive" class="form-control" th:field="*{isActive}"/>-->
-<!--                    <span class="error-message" th:each="error : ${#fields.errors('isActive')}" th:text="${error}">-->
-<!--                        Validation error</span>-->
-<!--                </div>-->
+                    <input id="isActive" type="checkbox" name="isActive" th:checked="${user.getIsActive()}" />
+                    <span class="error-message" th:each="error : ${#fields.errors('isActive')}" th:text="${error}">
+                        Validation error</span>
+                </div>
 
 
                 <div class="form-group">

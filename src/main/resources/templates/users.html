@@ -57,7 +57,7 @@
                     <td th:text="${user.id}"/>
                     <td th:text="${user.name}"/>
                     <td th:text="${user.email}"/>
-                    <td th:text="${user.isActive()}"/>
+                    <td th:text="${user.getIsActive()}"/>
 
                     <div th:if="${#authorization.expression('hasAnyAuthority(''ADMIN'',''USER'')')}">
                         <td><a th:href="@{'/edituser/'+${user.id}}">Edit</a></td>
