@@ -5,17 +5,19 @@ import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.*;
 import pl.coderslab.vending.machine.entity.Machine;
 import pl.coderslab.vending.machine.entity.SlotConfig;
 import pl.coderslab.vending.machine.service.MachineService;
 import pl.coderslab.vending.machine.service.MachineServiceImpl;
+import pl.coderslab.vending.user.entity.User;
+
+import javax.validation.Valid;
+import java.util.List;
 
 @Controller
-@RequestMapping("/mach")
+//@RequestMapping("/machines")
 public class MachineController {
     private static final Logger log = LogManager.getLogger(MachineController.class);
 
@@ -26,21 +28,33 @@ public class MachineController {
         this.machineServiceImpl = machineServiceImpl;
     }
 
-//    @GetMapping
-//    public String getMachines() {
-//        return "index";
-//    }
-//
-//    @GetMapping("/login")
-//    public String login(Model model) {
-//        return "login";
-//    }
-//
-//    @GetMapping("/user")
-//    public String userIndex() {
-//        return "user/index";
-//    }
+    @GetMapping("/machines")
+    public String allMachines(Model model) {
+        List<Machine> machines = machineServiceImpl.getMachines();
+        model.addAttribute("machines", machines);
+        return "machines";
+    }
+    @GetMapping("/deletemachine/{id}")
+    public String delete(@PathVariable Long id) {
+        machineServiceImpl.deleteById(id);
+        return "redirect:/machines";
+    }
+    @GetMapping("/editmachine/{id}")
+    public String editMachineForm(@PathVariable Long id, Model model) {
+        Machine machine = machineServiceImpl.getMachine(id);
+        model.addAttribute("machine", machine);
+        return "editmachineform";
+    }
 
+    @PostMapping("/editmachine")
+    public String editMachine(@Valid Machine machine, BindingResult result) {
+        if (result.hasErrors()) {
+            return "editmachineform";
+        }
+
+        machineServiceImpl.saveMachine(machine);
+        return "redirect:/machines";
+    }
 
     @GetMapping("/saveslot/{id}")
     @ResponseBody

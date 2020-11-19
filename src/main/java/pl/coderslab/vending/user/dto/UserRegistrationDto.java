@@ -11,7 +11,7 @@ import javax.validation.constraints.Size;
 public class UserRegistrationDto {
 
     @NotBlank
-    @Size(min = 5)
+    @Size(min = 3)
     private String name;
 
     @NotEmpty

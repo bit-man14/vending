@@ -49,10 +49,15 @@ public class UserServiceImpl implements UserService {
 
     }
 
-    @Override
+
     public void saveEdit(User user) {
 
-
+        //user.setActive(user.getIsActive());
+        if(user.getPassword()!=null){
+            user.setPassword(passwordEncoder.encode(user.getPassword()));
+        }
+        Role readerRole = roleRepository.findByName("READER");
+        user.setRoles(Arrays.asList(readerRole));
         userRepository.save(user);
     }
 

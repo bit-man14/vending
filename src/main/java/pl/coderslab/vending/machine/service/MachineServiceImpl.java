@@ -9,7 +9,10 @@ import pl.coderslab.vending.machine.entity.Machine;
 import pl.coderslab.vending.machine.entity.SlotConfig;
 import pl.coderslab.vending.machine.repository.MachineRepository;
 import pl.coderslab.vending.machine.repository.SlotRepository;
+import pl.coderslab.vending.user.entity.Role;
+import pl.coderslab.vending.user.entity.User;
 
+import java.util.Arrays;
 import java.util.List;
 
 @Service
@@ -36,16 +39,19 @@ public class MachineServiceImpl implements MachineService {
         machineRepository.save(machine);
     }
 
+//    public void saveEdit(Machine machine) {
+//        machineRepository.save(machine);
+//    }
     @Override
     public void saveSlot(long mach_id) {
         Machine machine = getMachine(mach_id);
         int sh = machine.getShelves();
         int sl = machine.getSlotsPerShelf();
-        int slNo=0;
+        int slNo = 0;
         SlotConfig slotConfig;
         for (int i = 1; i <= sh; i++) {
             for (int j = 0; j < sl; j++) {
-                slNo=i*10+j;
+                slNo = i * 10 + j;
                 slotConfig = new SlotConfig();
                 slotConfig.setSlotNo(slNo);
                 slotConfig.setSpiralSize(6);
@@ -68,8 +74,7 @@ public class MachineServiceImpl implements MachineService {
     }
 
     @Override
-    @Transactional
-    public void deleteMachine(long id) throws ResourceNotFoundException {
+    public void deleteById(Long id) {
         machineRepository.deleteById(id);
     }
 

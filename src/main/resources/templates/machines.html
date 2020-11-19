@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
 <head>
     <meta charset="utf-8"/>
     <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
@@ -30,23 +31,19 @@
 <div class="container">
     <div class="row">
         <div class="col-md-6 col-md-offset-3">
-            <h1>Upload Multiple Files</h1>
-            <form id="uploadFiles" name="uploadFiles" method="post" th:action=@{/uploadFiles}
-                  encType="multipart/form-data">
-                <input type="file" name="files" multiple required/>
-                <button class="btn btn-primary" type="submit">Submit</button>
-            </form>
-        </div>
-
-        <div class="col-md-6 col-md-offset-3">
-            <h1>List of Documents</h1>
+            <h1>List of Machines</h1>
             <table class="table table-bordered">
                 <thead>
                 <tr>
                     <th>Id</th>
                     <th>Name</th>
+                    <th>Type</th>
+                    <th>Serial</th>
+                    <th>Shelves</th>
+                    <th>Slots per shelf</th>
+                    <th>Date of installation</th>
                     <div th:if="${#authorization.expression('hasAnyAuthority(''ADMIN'',''USER'')')}">
-                        <th>Download Link</th>
+                        <th>Edit Link</th>
                     </div>
                     <div th:if="${#authorization.expression('hasAuthority(''ADMIN'')')}">
                         <th>Delete Link</th>
@@ -54,22 +51,26 @@
                 </tr>
                 </thead>
                 <tbody>
-                <tr th:each="file:${files}">
-                    <td th:text="${file.id}"/>
-                    <td th:text="${file.fileName}"/>
+                <tr th:each="machine:${machines}">
+                    <td th:text="${machine.id}"/>
+                    <td th:text="${machine.name}"/>
+                    <td th:text="${machine.type}"/>
+                    <td th:text="${machine.serial}"/>
+                    <td th:text="${machine.shelves}"/>
+                    <td th:text="${machine.slotsPerShelf}"/>
+                    <td th:text="${machine.instDate}"/>
+
                     <div th:if="${#authorization.expression('hasAnyAuthority(''ADMIN'',''USER'')')}">
-                        <td><a th:href="@{'/downloadFile/'+${file.id}}">Download</a></td>
+                        <td><a th:href="@{'/editmachine/'+${machine.id}}">Edit</a></td>
                     </div>
                     <div th:if="${#authorization.expression('hasAuthority(''ADMIN'')')}">
-                        <td><a th:href="@{'/deletefile/'+${file.id}}">Delete</a></td>
+                        <td><a th:href="@{'/deletemachine/'+${machine.id}}">Delete</a></td>
                     </div>
-
-
                 </tr>
                 </tbody>
             </table>
         </div>
-    </div>
+        </div>
 
 </div>
 
@@ -79,10 +80,3 @@
 
 </body>
 </html>
-<!--visibilty for roles-->
-<!--<div th:if="${#authorization.expression('hasAuthority(''ADMIN'')')}">ADMIN</div>-->
-<!--<div th:if="${#authorization.expression('hasAuthority(''USER'')')}">USER</div>-->
-<!--<div th:if="${#authorization.expression('isAuthenticated()')}">-->
-<!--    Text visible only to authenticated users.-->
-<!--</div>-->
-<!--</div>-->

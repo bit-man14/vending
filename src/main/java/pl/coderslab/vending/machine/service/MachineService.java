@@ -12,6 +12,6 @@ public interface MachineService {
     void saveSlot(long mach_id);
 
     Machine getMachine(long id) throws ResourceNotFoundException;
-    
-    void deleteMachine(long id) throws ResourceNotFoundException;
+
+    void deleteById(Long id);
 }

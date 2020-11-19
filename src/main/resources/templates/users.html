@@ -20,13 +20,9 @@
                     class="icon-bar"></span> <span class="icon-bar"></span> <span
                     class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="#" th:href="@{/}">Registration and Login Module</a>
+            <a class="navbar-brand" href="#" th:href="@{/}">HOME</a>
         </div>
-        <div id="navbar" class="collapse navbar-collapse">
-            <ul class="nav navbar-nav">
-                <li sec:authorize="isAuthenticated()"><a th:href="@{/logout}">Logout</a></li>
-            </ul>
-        </div>
+        <a sec:authorize="isAuthenticated()"><a class="navbar-brand"th:href="@{/logout}" style="color: green ">Logout</a></a>
     </div>
 </nav>
 <br>
@@ -43,6 +39,7 @@
                     <th>Id</th>
                     <th>Name</th>
                     <th>Email</th>
+                    <th>Roles</th>
                     <th>Active</th>
                     <div th:if="${#authorization.expression('hasAnyAuthority(''ADMIN'',''USER'')')}">
                         <th>Edit Link</th>
@@ -57,6 +54,7 @@
                     <td th:text="${user.id}"/>
                     <td th:text="${user.name}"/>
                     <td th:text="${user.email}"/>
+                    <td th:text="${user.roles}"/>
                     <td th:text="${user.getIsActive()}"/>
 
                     <div th:if="${#authorization.expression('hasAnyAuthority(''ADMIN'',''USER'')')}">

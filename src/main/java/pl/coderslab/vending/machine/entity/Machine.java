@@ -1,14 +1,13 @@
 package pl.coderslab.vending.machine.entity;
 
 import lombok.*;
+import org.springframework.format.annotation.DateTimeFormat;
 import pl.coderslab.vending.product.entity.Product;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Date;
 import java.util.List;
 
 
@@ -26,14 +25,14 @@ public class Machine {
     private String type;
     private String serial;
     //@Column(name = "inst_date")
-    private Date instDate;
+    @DateTimeFormat(pattern = "yyyy-MM-dd'T'HH:mm")
+    private LocalDateTime instDate;
     private int shelves;
     private int slotsPerShelf;
 
     @OneToMany
-    @JoinColumn(name="machine_id")
-    private List<SlotConfig> slots=new ArrayList<>();
-
+    @JoinColumn(name = "machine_id")
+    private List<SlotConfig> slots = new ArrayList<>();
 
 
     @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
@@ -52,21 +51,20 @@ public class Machine {
     private LocalDateTime updatedOn;
 
 
-
     @PrePersist
     public void prePersist() {
         createdOn = LocalDateTime.now();
     }
-    
+
     @PreUpdate
     public void preUpdate() {
         updatedOn = LocalDateTime.now();
     }
 
-    private void testConfig(){
-         int shelves=5;
-         int slotsPerShelf=8;
-        SlotConfig slotConfig=new SlotConfig();
+    private void testConfig() {
+        int shelves = 5;
+        int slotsPerShelf = 8;
+        SlotConfig slotConfig = new SlotConfig();
 
     }
 
@@ -102,11 +100,11 @@ public class Machine {
         this.serial = serial;
     }
 
-    public Date getInstDate() {
+    public LocalDateTime getInstDate() {
         return instDate;
     }
 
-    public void setInstDate(Date instDate) {
+    public void setInstDate(LocalDateTime instDate) {
         this.instDate = instDate;
     }
 

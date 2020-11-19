@@ -1,16 +1,11 @@
 package pl.coderslab.vending.user.controller;
 
 
-import org.apache.velocity.exception.ResourceNotFoundException;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.servlet.ModelAndView;
-import pl.coderslab.vending.user.dto.UserRegistrationDto;
 import pl.coderslab.vending.user.entity.User;
-import pl.coderslab.vending.user.service.UserService;
 import pl.coderslab.vending.user.service.UserServiceImpl;
 
 import javax.validation.Valid;
@@ -19,7 +14,7 @@ import java.util.List;
 
 @Controller
 public class UserController {
-    @Autowired
+
     UserServiceImpl userService;
 
     public UserController(UserServiceImpl userService) {
@@ -38,7 +33,7 @@ public class UserController {
     }
 
     @GetMapping("/login")
-    public String login(Model model) {
+    public String login() {
         return "login";
     }
 
@@ -49,36 +44,17 @@ public class UserController {
         return "users";
     }
 
-//    @PostMapping("/edituser/{id}")
-//    public String editUserSave(@ModelAttribute("user") User newUser, BindingResult bindingResult) {
-//
-//        if (bindingResult.hasErrors()) {
-//            return "edituserform";
-//        }
-//        userService.addUser(newUser);
-//        return "users";
-//    }
 
     @GetMapping("/edituser/{id}")
     public String editUserForm(@PathVariable Long id, Model model) {
         User user = userService.getUser(id);
         model.addAttribute("user", user);
+
         return "edituserform";
     }
-    /////////
-//    @RequestMapping("/edituser/{id}")
-//    public ModelAndView showEditProductPage(@PathVariable Long id) {
-//        ModelAndView mav = new ModelAndView("edituserform");
-//        User user = userService.getUser(id);
-//        mav.addObject("user", user);
-//
-//        return mav;
-//    }
 
-    ////////
     @PostMapping("/edituser")
-    public String registerUserAccount(@Valid User user,
-                                      BindingResult result) {
+    public String registerUserAccount(@Valid User user, BindingResult result) {
         if (result.hasErrors()) {
             return "edituserform";
         }

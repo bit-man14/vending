@@ -24,19 +24,14 @@
                     class="icon-bar"></span> <span class="icon-bar"></span> <span
                     class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="#" th:href="@{/}">Registration and Login Module</a>
+            <a class="navbar-brand" href="#" th:href="@{/}">HOME</a>
             <a class="navbar-brand" href="#" th:href="@{/getfiles}">File Center</a>
-            <div th:if="${#authorization.expression('hasAuthority(''ADMIN'')')}">
+            <a class="navbar-brand" href="#" th:href="@{/machines}">Machines</a>
+            <a th:if="${#authorization.expression('hasAuthority(''ADMIN'')')}">
                 <a class="navbar-brand" href="#" th:href="@{/users}">Users</a>
-            </div>
-            <div id="navbar" class="collapse navbar-collapse">
-                <ul class="nav navbar-nav">
-                    <li sec:authorize="isAuthenticated()"><a th:href="@{/logout}">Logout</a></li>
-                </ul>
-            </div>
+            </a>
+            <a sec:authorize="isAuthenticated()"><a class="navbar-brand"th:href="@{/logout}" style="color: green ">Logout</a></a>
         </div>
-
-
     </div>
 </nav>
 
@@ -44,7 +39,7 @@
 <br>
 <div class="container">
     <h3>Login successful</h3>
-
+<br>
     <p>
         Welcome <span sec:authentication="principal.username">User</span>
         &nbsp;

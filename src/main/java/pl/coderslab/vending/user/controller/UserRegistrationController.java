@@ -25,11 +25,6 @@ public class UserRegistrationController {
     private UserService userService;
 
 
-//    @ModelAttribute("user")
-//    public UserRegistrationDto userRegistrationDto() {
-//        return new UserRegistrationDto();
-//    }
-
     @GetMapping
     public String showRegistrationForm(Model model) {
         UserRegistrationDto newUser = new UserRegistrationDto();

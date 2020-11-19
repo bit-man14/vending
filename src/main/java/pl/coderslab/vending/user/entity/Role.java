@@ -55,6 +55,11 @@ public class Role {
     public void setUsers(Collection<User> users) {
         this.users = users;
     }
+
+    @Override
+    public String toString() {
+        return name;
+    }
 //
 //    public Set<User> getUsers() {
 //        return users;
