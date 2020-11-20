@@ -63,9 +63,7 @@
 <!--                        error-->
 <!--                    </span>-->
 <!--                </div>-->
-                <select th:field="*{packShape.id}">
-                    <option th:each="${packShape}" th:text="${packShape.name}"></option>
-                </select>
+
                 <div class="form-group" th:classappend="${#fields.hasErrors('forSpiralSize')}? 'has-error':''">
                     <label for="forSpiralSize" class="control-label">Spiral Size</label>
                     <input id="forSpiralSize" class="form-control" th:field="*{forSpiralSize}"/>
