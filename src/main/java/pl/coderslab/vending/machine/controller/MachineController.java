@@ -53,7 +53,7 @@ public class MachineController {
         }
 
         machineServiceImpl.saveMachine(machine);
-        return "redirect:/machines";
+        return "redirect:/machines?success";
     }
 
     @GetMapping("/saveslot/{id}")
@@ -63,5 +63,18 @@ public class MachineController {
         machineServiceImpl.saveSlot(id);
         return "Saved slots for machine id=" + id;
     }
+    @GetMapping("/addmachine")
+    public String addBookForm(Model model) {
+        model.addAttribute("machine", new Machine());
+        return "addmachineform";
+    }
 
+    @PostMapping("/addmachine")
+    public String add(@ModelAttribute("machine") Machine machine, BindingResult bindingResult) {
+        if (bindingResult.hasErrors()) {
+            return "addmachineform";
+        }
+        machineServiceImpl.saveMachine(machine);
+        return "redirect:/machines?success";
+    }
 }

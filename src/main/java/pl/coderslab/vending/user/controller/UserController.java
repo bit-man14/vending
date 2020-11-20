@@ -60,6 +60,7 @@ public class UserController {
         }
 
         userService.saveEdit(user);
-        return "redirect:/users";
+        return "redirect:/users?success";
     }
+
 }
