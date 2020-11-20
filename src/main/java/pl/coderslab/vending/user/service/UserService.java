@@ -12,15 +12,15 @@ public interface UserService extends UserDetailsService {
     User findByEmail(String email);
     
     User save(UserRegistrationDto registration);
+
     void saveEdit(User user);
 
     List<User> allUsers();
 
-    Optional<User> userById(Long id);
+    //Optional<User> userById(Long id);
 
-    void addUser(User user);// adding by ADMIN
+    void addUser(User user);// adding by ADMIN - future use
 
     void deleteById(Long id);
 
-    void update(User user);
 }

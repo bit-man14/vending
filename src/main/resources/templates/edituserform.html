@@ -53,7 +53,9 @@
                 <div class="form-group">
                     <label for="name" class="control-label">Name</label>
                     <input id="name" type="text" class="form-control" th:field="*{name}">
-                    <div th:if="${#fields.hasErrors('name')}" th:errors="*{name}">Name Error</div>
+                    <<span class="error-message" th:each="error : ${#fields.errors('name')}" th:text="${error}">Validation
+                        error
+                    </span>
                 </div>
 
                 <!--                <div class="form-group" th:classappend="${#fields.hasErrors('name')}? 'has-error':''">-->
@@ -74,7 +76,7 @@
                 <div class="form-group" th:classappend="${#fields.hasErrors('password')}? 'has-error':''">
                     <label for="password" class="control-label">Password</label>
                     <input id="password" type="password" class="form-control" th:field="*{password}"/>
-                    <span class="error-message" th:each="error : ${#fields.errors('email')}" th:text="${error}">Validation
+                    <span class="error-message" th:each="error : ${#fields.errors('password')}" th:text="${error}">Validation
                         error
                     </span>
                 </div>
@@ -82,8 +84,8 @@
 
                 <div class="form-group" th:classappend="${#fields.hasErrors('isActive')}? 'has-error':''">
                     <label for="isActive" class="control-label">Active</label>
-                    <!--                    <input id="isActive" class="form-control" th:field="*{isActive}"/>-->
-                    <input id="isActive" type="checkbox" name="isActive" th:checked="${user.isActive} ? 'checked'"/>
+                    <input id="isActive" type="checkbox" th:field="*{isActive}"/>
+                    <!-- <input id="isActive" type="checkbox" name="isActive" th:checked="${user.isActive} ? 'checked'"/>&lt;!&ndash; było th:checked&ndash;&gt;-->
                     <span class="error-message" th:each="error : ${#fields.errors('isActive')}" th:text="${error}">
                         Validation error</span>
                 </div>

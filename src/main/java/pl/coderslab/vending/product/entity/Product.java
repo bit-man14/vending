@@ -2,17 +2,13 @@ package pl.coderslab.vending.product.entity;
 
 import lombok.*;
 import pl.coderslab.vending.machine.entity.Machine;
-import pl.coderslab.vending.user.entity.User;
 
 import javax.persistence.*;
 import javax.validation.constraints.*;
 import java.time.LocalDateTime;
-import java.util.Collection;
-import java.util.Date;
 import java.util.List;
 
-@Setter
-@Getter
+
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
@@ -25,7 +21,7 @@ public class Product {
     @NotBlank
     @Size(min = 3)
     private String name;
-    private String packShape;//bottle, can , pouch, bar, box
+
 
     @Min(5)
     @Max(19)
@@ -33,9 +29,12 @@ public class Product {
 
     @DecimalMin(value = "0.10")
     @DecimalMax(value = "10.00")
-    @Digits(integer=2, fraction=2)
+    @Digits(integer = 2, fraction = 2)
     private Double price;
 
+    @OneToOne
+    @JoinColumn(name = "packshape_id")
+    private PackShape packShape;//bottle, can , pouch, bar, box
 
     @ManyToMany(mappedBy = "products")
     private List<Machine> machines;
@@ -44,14 +43,78 @@ public class Product {
     private LocalDateTime createdOn;
     @Column(name = "updated_on")
     private LocalDateTime updatedOn;
-  
+
     @PrePersist
     public void prePersist() {
         createdOn = LocalDateTime.now();
     }
-    
+
     @PreUpdate
     public void preUpdate() {
         updatedOn = LocalDateTime.now();
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public int getForSpiralSize() {
+        return forSpiralSize;
+    }
+
+    public void setForSpiralSize(int forSpiralSize) {
+        this.forSpiralSize = forSpiralSize;
+    }
+
+    public Double getPrice() {
+        return price;
+    }
+
+    public void setPrice(Double price) {
+        this.price = price;
+    }
+
+    public PackShape getPackShape() {
+        return packShape;
+    }
+
+    public void setPackShape(PackShape packShape) {
+        this.packShape = packShape;
+    }
+
+    public List<Machine> getMachines() {
+        return machines;
+    }
+
+    public void setMachines(List<Machine> machines) {
+        this.machines = machines;
+    }
+
+    public LocalDateTime getCreatedOn() {
+        return createdOn;
+    }
+
+    public void setCreatedOn(LocalDateTime createdOn) {
+        this.createdOn = createdOn;
+    }
+
+    public LocalDateTime getUpdatedOn() {
+        return updatedOn;
+    }
+
+    public void setUpdatedOn(LocalDateTime updatedOn) {
+        this.updatedOn = updatedOn;
     }
 }

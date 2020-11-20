@@ -5,15 +5,14 @@ import lombok.*;
 import javax.persistence.*;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Size;
 import java.time.LocalDateTime;
 import java.util.Collection;
-import java.util.HashSet;
-import java.util.Set;
 
 
-@AllArgsConstructor
-@NoArgsConstructor
+
+
 @Entity
 @Table(name = "users")
 public class User {
@@ -21,13 +20,15 @@ public class User {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "user_id")
     private Long id;
-    @NotBlank
-    @Size(min = 5)
+    @NotEmpty
+    @Size(min = 3)
     private String name;
+    @NotEmpty
     private String password;
-    @NotBlank
+    @NotEmpty
     @Email(message = "Please enter a valid e-mail address")
     private String email;
+
     private boolean active;
 
 
@@ -46,8 +47,42 @@ public class User {
             joinColumns = @JoinColumn(name = "user_id"),
             inverseJoinColumns = @JoinColumn(name = "role_id"))
     private Collection<Role> roles;
+
+    public User() {
+    }
+
+    public User(Long id, @NotBlank @Size(min = 5) String name, String password, @NotBlank @Email(message = "Please enter a valid e-mail address") String email, boolean active, LocalDateTime createdOn, LocalDateTime updatedOn, Collection<Role> roles) {
+        this.id = id;
+        this.name = name;
+        this.password = password;
+        this.email = email;
+        this.active = active;
+        this.createdOn = createdOn;
+        this.updatedOn = updatedOn;
+        this.roles = roles;
+    }
+
+    public User(@NotBlank @Size(min = 5) String name, String password, @NotBlank @Email(message = "Please enter a valid e-mail address") String email) {
+        this.name = name;
+        this.password = password;
+        this.email = email;
+    }
     //private Set<Role> roles = new HashSet<>();
 
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", password='" + password + '\'' +
+                ", email='" + email + '\'' +
+                ", active=" + active +
+                ", createdOn=" + createdOn +
+                ", updatedOn=" + updatedOn +
+                ", roles=" + roles +
+                '}';
+    }
 
     @PrePersist
     public void prePersist() {

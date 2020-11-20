@@ -27,10 +27,11 @@
             <a class="navbar-brand" href="#" th:href="@{/}">HOME</a>
             <a class="navbar-brand" href="#" th:href="@{/getfiles}">File Center</a>
             <a class="navbar-brand" href="#" th:href="@{/machines}">Machines</a>
+            <a class="navbar-brand" href="#" th:href="@{/products}">Products</a>
             <a th:if="${#authorization.expression('hasAuthority(''ADMIN'')')}">
                 <a class="navbar-brand" href="#" th:href="@{/users}">Users</a>
             </a>
-            <a sec:authorize="isAuthenticated()"><a class="navbar-brand"th:href="@{/logout}" style="color: green ">Logout</a></a>
+            <a sec:authorize="isAuthenticated()"><a class="navbar-brand"th:href="@{/logout}" style="color: green">Logout</a></a>
         </div>
     </div>
 </nav>

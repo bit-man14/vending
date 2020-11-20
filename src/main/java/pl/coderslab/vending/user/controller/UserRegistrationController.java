@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.*;
 import pl.coderslab.vending.user.dto.UserRegistrationDto;
 import pl.coderslab.vending.user.entity.User;
 import pl.coderslab.vending.user.service.UserService;
+import pl.coderslab.vending.user.service.UserServiceImpl;
 
 import javax.validation.Valid;
 
@@ -22,7 +23,7 @@ public class UserRegistrationController {
     private static final Logger log = LogManager.getLogger(UserRegistrationController.class);
 
     @Autowired
-    private UserService userService;
+    private UserServiceImpl userServiceImpl;
 
 
     @GetMapping
@@ -39,14 +40,14 @@ public class UserRegistrationController {
             log.debug("Binding error");
             return "registration";
         }
-        User existing = userService.findByEmail(userDto.getEmail());
+        User existing = userServiceImpl.findByEmail(userDto.getEmail());
         if (existing != null) {
             result.rejectValue("email", "duplicated_email");
             return "registration";
         }
 
 
-        userService.save(userDto);
+        userServiceImpl.save(userDto);
         return "redirect:/registration?success";
     }
 

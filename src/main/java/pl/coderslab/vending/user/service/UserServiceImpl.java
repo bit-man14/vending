@@ -21,13 +21,10 @@ import java.util.stream.Collectors;
 
 @Service
 public class UserServiceImpl implements UserService {
-
     @Autowired
     private UserRepository userRepository;
-
     @Autowired
     private RoleRepository roleRepository;
-
     @Autowired
     private BCryptPasswordEncoder passwordEncoder;
 
@@ -42,9 +39,9 @@ public class UserServiceImpl implements UserService {
         user.setEmail(registration.getEmail());
         user.setPassword(passwordEncoder.encode(registration.getPassword()));
         user.setActive(true);
-        Role readerRole = roleRepository.findByName("READER");
-        user.setRoles(Arrays.asList(readerRole));
-
+        //Role readerRole = roleRepository.findByName("READER");
+        //user.setRoles(Arrays.asList(readerRole));
+        user.setRoles(Arrays.asList(new Role("READER")));
         return userRepository.save(user);
 
     }
@@ -53,7 +50,7 @@ public class UserServiceImpl implements UserService {
     public void saveEdit(User user) {
 
         //user.setActive(user.getIsActive());
-        if(user.getPassword()!=null){
+        if (user.getPassword() != null) {
             user.setPassword(passwordEncoder.encode(user.getPassword()));
         }
         Role readerRole = roleRepository.findByName("READER");
@@ -66,10 +63,6 @@ public class UserServiceImpl implements UserService {
         return userRepository.findAll();
     }
 
-    @Override
-    public Optional<User> userById(Long id) {
-        return userRepository.findById(id);
-    }
 
     @Override
     public void addUser(User user) {
@@ -81,10 +74,6 @@ public class UserServiceImpl implements UserService {
         userRepository.deleteById(id);
     }
 
-    @Override
-    public void update(User user) {
-
-    }
 
     @Override
     public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
