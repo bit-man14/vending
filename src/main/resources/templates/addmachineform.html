@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+
+<head>
+    <meta charset="utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+
+    <!--    <link rel="stylesheet" type="text/css" th:href="@{/webjars/bootstrap/3.3.7/css/bootstrap.min.css}" />-->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+          integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <title>Add machine</title>
+</head>
+
+<body>
+<nav class="navbar navbar-inverse navbar-fixed-top">
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar"
+                    aria-expanded="false" aria-controls="navbar">
+                <span class="sr-only">Toggle navigation</span> <span
+                    class="icon-bar"></span> <span class="icon-bar"></span> <span
+                    class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="#" th:href="@{/}">HOME</a>
+        </div>
+    </div>
+</nav>
+
+<br>
+<br>
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-6 col-md-offset-3">
+
+            <div th:if="${param.success}">
+                <div class="alert alert-info">You've successfully edited machine data!</div>
+            </div>
+
+            <h1>Enter new machine data</h1>
+            <form th:action="@{/addmachine}" th:object="${machine}" method="post">
+
+                <span class="error-message" th:if="${#fields.hasGlobalErrors()}"
+                      th:each="error : ${#fields.errors('global')}" th:text="${error}">Validation error
+                </span>
+
+<!--                <div class="form-group">-->
+<!--                    <label for="id" class="control-label">Id</label>-->
+<!--                    <input id="id" type="hi" class="form-control" th:field="*{id}" readonly="readonly">-->
+<!--                    &lt;!&ndash;                    <div th:if="${#fields.hasErrors('id')}" th:errors="*{id}">Name Error</div>&ndash;&gt;-->
+<!--                </div>-->
+                <div class="form-group">
+                    <label for="name" class="control-label">Name</label>
+                    <input id="name" type="text" class="form-control" th:field="*{name}">
+                    <div th:if="${#fields.hasErrors('name')}" th:errors="*{name}">Name Error</div>
+                </div>
+
+                <div class="form-group" th:classappend="${#fields.hasErrors('serial')}? 'has-error':''">
+                    <label for="serial" class="control-label">Serial</label>
+                    <input id="serial" class="form-control" th:field="*{serial}"/>
+                    <span class="error-message" th:each="error : ${#fields.errors('serial')}" th:text="${error}">Validation
+                        error
+                    </span>
+                </div>
+                <div class="form-group" th:classappend="${#fields.hasErrors('type')}? 'has-error':''">
+                    <label for="type" class="control-label">Type</label>
+                    <input id="type" class="form-control" th:field="*{type}"/>
+                    <span class="error-message" th:each="error : ${#fields.errors('type')}" th:text="${error}">Validation
+                        error
+                    </span>
+                </div>
+                <div class="form-group" th:classappend="${#fields.hasErrors('shelves')}? 'has-error':''">
+                    <label for="shelves" class="control-label">Shelves</label>
+                    <input id="shelves" class="form-control" th:field="*{shelves}"/>
+                    <span class="error-message" th:each="error : ${#fields.errors('type')}" th:text="${error}">Validation
+                        error
+                    </span>
+                </div>
+                <div class="form-group" th:classappend="${#fields.hasErrors('slotsPerShelf')}? 'has-error':''">
+                    <label for="slotsPerShelf" class="control-label">Slots per shelf</label>
+                    <input id="slotsPerShelf" class="form-control" th:field="*{slotsPerShelf}"/>
+                    <span class="error-message" th:each="error : ${#fields.errors('slotsPerShelf')}" th:text="${error}">Validation
+                        error
+                    </span>
+                </div>
+                <div class="form-group" th:classappend="${#fields.hasErrors('instDate')}? 'has-error':''">
+                    <label for="instDate" class="control-label">Inst date</label>
+                    <input type="datetime-local" id="instDate" class="form-control" th:field="*{instDate}"/>
+                    <span class="error-message" th:each="error : ${#fields.errors('instDate')}" th:text="${error}">Validation
+                        error
+                    </span>
+                </div>
+
+
+
+                <div class="form-group">
+                    <button type="submit" class="btn btn-success">Save</button>
+
+                </div>
+
+            </form>
+        </div>
+    </div>
+</div>
+
+<!--<script type="text/javascript" th:src="@{/webjars/jquery/3.2.1/jquery.min.js/}"></script>-->
+<!--<script type="text/javascript" th:src="@{/webjars/bootstrap/3.3.7/js/bootstrap.min.js}"></script>-->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
+        integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
+        crossorigin="anonymous"></script>
+</body>
+</html>
