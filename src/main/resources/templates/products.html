@@ -73,7 +73,7 @@
             </hr>
             <ul class="nav nav-pills">
                 <li class="nav-item" th:each="i : ${#numbers.sequence(0,products.totalPages-1)}">
-                    <a th:href="@{/(page=${i})}" th:text="${i}" class="navbar-link"
+                    <a th:href="@{/products/(page=${i})}" th:text="${i}" class="navbar-link"
                         th:classappend="${currentPage}==${i}?'active':''"></a>
 
                 </li>

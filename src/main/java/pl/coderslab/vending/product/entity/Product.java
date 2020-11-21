@@ -18,7 +18,7 @@ public class Product {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     //@Column(name = "name", length = 100, nullable = false)
-    @NotBlank
+    @NotEmpty
     @Size(min = 3)
     private String name;
 
@@ -86,13 +86,7 @@ public class Product {
         this.price = price;
     }
 
-    public PackShape getPackShape() {
-        return packShape;
-    }
 
-    public void setPackShape(PackShape packShape) {
-        this.packShape = packShape;
-    }
 
     public List<Machine> getMachines() {
         return machines;
@@ -116,5 +110,13 @@ public class Product {
 
     public void setUpdatedOn(LocalDateTime updatedOn) {
         this.updatedOn = updatedOn;
+    }
+
+    public PackShape getPackShape() {
+        return packShape;
+    }
+
+    public void setPackShape(PackShape packShape) {
+        this.packShape = packShape;
     }
 }

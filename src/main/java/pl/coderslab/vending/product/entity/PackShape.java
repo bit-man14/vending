@@ -1,13 +1,23 @@
 package pl.coderslab.vending.product.entity;
 
-import javax.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.NoArgsConstructor;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotEmpty;
+
+@AllArgsConstructor
+@NoArgsConstructor
 @Entity
-@Table(name = "pack_shape")
 public class PackShape {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    @NotEmpty
     private String name;
 
     public Long getId() {
