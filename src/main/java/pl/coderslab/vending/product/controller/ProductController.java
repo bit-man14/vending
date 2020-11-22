@@ -1,8 +1,7 @@
 package pl.coderslab.vending.product.controller;
 
 import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.Pageable;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -23,7 +22,6 @@ public class ProductController {
     }
 
 
-
     @GetMapping("/addproduct")
     public String addProductForm(Model model) {
         model.addAttribute("product", new Product());
@@ -40,13 +38,32 @@ public class ProductController {
     }
 
     @GetMapping("/products")
-    public String allProducts(Model model, @RequestParam(defaultValue = "0") int page) {
-        Pageable pageable = PageRequest.of(page, 10);
-        Page<Product> products = productServiceImpl.getProducts(pageable);
-        //List<PackShape> packs=productServiceImpl.getPackshape();
-        model.addAttribute("products", products);
-        model.addAttribute("currentPage",page);
-        //model.addAttribute("data", productServiceImpl.getProducts(new PageRequest(page,10)));
+    public String listProducts(Model model) {
+        return findPaginated(1, "name", "asc", model);
+    }
+
+    @GetMapping("/products/page/{pageNum}")
+    public String findPaginated(@PathVariable(name = "pageNum") int pageNum,
+                                @RequestParam("sortField") String sortField,
+                                @RequestParam("sortDir") String sortDir,
+                                Model model) {
+
+        int pageSize = 10;
+        Page<Product> page = productServiceImpl.findPaginated(pageNum, pageSize, sortField, sortDir);
+        List<Product> listProducts = page.getContent();
+
+        model.addAttribute("currentPage", pageNum);
+        model.addAttribute("totalPages", page.getTotalPages());
+        model.addAttribute("totalItems", page.getTotalElements());
+        model.addAttribute("sortField", sortField);
+        model.addAttribute("sortDir", sortDir);
+        model.addAttribute("reverseSortDir", sortDir.equals("asc") ? "desc" : "asc");
+        model.addAttribute("listProducts", listProducts);
+
+        List<PackShape> packShape = productServiceImpl.getPackshape();
+
+        model.addAttribute("packShape", packShape);
+
         return "products";
     }
 
@@ -55,6 +72,7 @@ public class ProductController {
         productServiceImpl.deleteById(id);
         return "redirect:/products";
     }
+
     @GetMapping("/editproduct/{id}")
     public String editMachineForm(@PathVariable Long id, Model model) {
         Product product = productServiceImpl.getProduct(id);
