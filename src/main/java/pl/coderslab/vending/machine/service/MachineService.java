@@ -9,7 +9,7 @@ public interface MachineService {
     List<Machine> getMachines();
     
     void saveMachine(Machine machine);
-    void saveSlot(long mach_id);
+    boolean saveSlot(long mach_id);
 
     Machine getMachine(long id) throws ResourceNotFoundException;
 

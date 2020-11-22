@@ -29,7 +29,7 @@ public class ProductController {
     }
 
     @PostMapping("/addproduct")
-    public String addProduct(@ModelAttribute("machine") Product product, BindingResult bindingResult) {
+    public String addProduct(@ModelAttribute("product") @Valid Product product, BindingResult bindingResult) {
         if (bindingResult.hasErrors()) {
             return "addproductform";
         }

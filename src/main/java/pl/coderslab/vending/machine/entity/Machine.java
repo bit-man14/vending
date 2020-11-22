@@ -5,6 +5,8 @@ import org.springframework.format.annotation.DateTimeFormat;
 import pl.coderslab.vending.product.entity.Product;
 
 import javax.persistence.*;
+import javax.validation.constraints.Max;
+import javax.validation.constraints.Min;
 import javax.validation.constraints.NotBlank;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
@@ -27,7 +29,11 @@ public class Machine {
     //@Column(name = "inst_date")
     @DateTimeFormat(pattern = "yyyy-MM-dd'T'HH:mm")
     private LocalDateTime instDate;
+    @Min(1)
+    @Max(10)
     private int shelves;
+    @Min(3)
+    @Max(20)
     private int slotsPerShelf;
 
     @OneToMany

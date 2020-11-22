@@ -56,10 +56,10 @@
                     <div th:if="${#fields.hasErrors('name')}" th:errors="*{name}">Name Error</div>
                 </div>
 
-                <div class="form-group" th:classappend="${#fields.hasErrors('packShape.name')}? 'has-error':''">
+                <div class="form-group" th:classappend="${#fields.hasErrors('packShape')}? 'has-error':''">
                     <label for="packShape" class="control-label">Pack shape(1-can, 2-bottle, 3-pouch, 4-box, 5-bar)</label>
                     <input id="packShape" class="form-control" th:field="*{packShape}"/>
-                    <span class="error-message" th:each="error : ${#fields.errors('packShape.name')}" th:text="${error}">Validation
+                    <span class="error-message" th:each="error : ${#fields.errors('packShape')}" th:text="${error}">Validation
                         error
                     </span>
                 </div>

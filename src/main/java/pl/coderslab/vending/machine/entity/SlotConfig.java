@@ -5,7 +5,6 @@ import lombok.*;
 import javax.persistence.*;
 
 
-
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
@@ -17,6 +16,7 @@ public class SlotConfig {
     private int slotNo;
     private int spiralSize;
     private boolean isActive;
+    private Long machine_id;
 
     public Long getId() {
         return id;
@@ -50,9 +50,9 @@ public class SlotConfig {
         isActive = active;
     }
 
-@ManyToOne
-@JoinColumn(name="machine_id")
-private Machine machine;
+//    @ManyToOne
+//    @JoinColumn(name = "machine_id")
+//    private Machine machine;
 
     @Override
     public String toString() {
@@ -63,4 +63,13 @@ private Machine machine;
                 ", isActive=" + isActive +
                 '}';
     }
+
+    public Long getMachine_id() {
+        return machine_id;
+    }
+
+    public void setMachine_id(Long machine_id) {
+        this.machine_id = machine_id;
+    }
+
 }

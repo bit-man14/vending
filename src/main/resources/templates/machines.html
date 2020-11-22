@@ -52,6 +52,9 @@
                     <div th:if="${#authorization.expression('hasAuthority(''ADMIN'')')}">
                         <th>Delete Link</th>
                     </div>
+                    <div th:if="${#authorization.expression('hasAuthority(''ADMIN'')')}">
+                        <th>Generate slots</th>
+                    </div>
                 </tr>
                 </thead>
                 <tbody>
@@ -69,6 +72,9 @@
                     </div>
                     <div th:if="${#authorization.expression('hasAuthority(''ADMIN'')')}">
                         <td><a th:href="@{'/deletemachine/'+${machine.id}}">Delete</a></td>
+                    </div>
+                    <div th:if="${#authorization.expression('hasAuthority(''ADMIN'')')}">
+                        <td><a th:href="@{'/saveslot/'+${machine.id}}">Generate slots</a></td>
                     </div>
                 </tr>
                 </tbody>

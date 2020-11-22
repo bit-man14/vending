@@ -34,11 +34,13 @@ public class MachineController {
         model.addAttribute("machines", machines);
         return "machines";
     }
+
     @GetMapping("/deletemachine/{id}")
     public String delete(@PathVariable Long id) {
         machineServiceImpl.deleteById(id);
         return "redirect:/machines";
     }
+
     @GetMapping("/editmachine/{id}")
     public String editMachineForm(@PathVariable Long id, Model model) {
         Machine machine = machineServiceImpl.getMachine(id);
@@ -59,10 +61,14 @@ public class MachineController {
     @GetMapping("/saveslot/{id}")
     @ResponseBody
     public String saveSlot(@PathVariable Long id, Model model) {
+        if (machineServiceImpl.saveSlot(id)) {
+            return "Saved slots for machine id = " + id;
+        }else{
+            return "Missing data to generate slots for id = " + id;
+        }
 
-        machineServiceImpl.saveSlot(id);
-        return "Saved slots for machine id=" + id;
     }
+
     @GetMapping("/addmachine")
     public String addBookForm(Model model) {
         model.addAttribute("machine", new Machine());
@@ -70,7 +76,7 @@ public class MachineController {
     }
 
     @PostMapping("/addmachine")
-    public String add(@ModelAttribute("machine") Machine machine, BindingResult bindingResult) {
+    public String add(@ModelAttribute("machine") @Valid Machine machine, BindingResult bindingResult) {
         if (bindingResult.hasErrors()) {
             return "addmachineform";
         }
