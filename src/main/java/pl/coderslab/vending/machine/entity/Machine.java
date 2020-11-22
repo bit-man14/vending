@@ -41,14 +41,14 @@ public class Machine {
     private List<SlotConfig> slots = new ArrayList<>();
 
 
-    @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-    @JoinTable(
-            name = "machines_products",
-            joinColumns = @JoinColumn(
-                    name = "machine_id", referencedColumnName = "id"),
-            inverseJoinColumns = @JoinColumn(
-                    name = "product_id", referencedColumnName = "id"))
-    private List<Product> products;
+//    @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+//    @JoinTable(
+//            name = "machines_products",
+//            joinColumns = @JoinColumn(
+//                    name = "machine_id", referencedColumnName = "id"),
+//            inverseJoinColumns = @JoinColumn(
+//                    name = "product_id", referencedColumnName = "id"))
+//    private List<Product> products;
 
 
     @Column(name = "created_on")
@@ -138,13 +138,13 @@ public class Machine {
         this.slots = slots;
     }
 
-    public List<Product> getProducts() {
-        return products;
-    }
-
-    public void setProducts(List<Product> products) {
-        this.products = products;
-    }
+//    public List<Product> getProducts() {
+//        return products;
+//    }
+//
+//    public void setProducts(List<Product> products) {
+//        this.products = products;
+//    }
 
     public LocalDateTime getCreatedOn() {
         return createdOn;

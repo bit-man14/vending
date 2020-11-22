@@ -2,10 +2,12 @@ package pl.coderslab.vending.product.entity;
 
 import lombok.*;
 import pl.coderslab.vending.machine.entity.Machine;
+import pl.coderslab.vending.machine.entity.SlotConfig;
 
 import javax.persistence.*;
 import javax.validation.constraints.*;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 
 
@@ -36,8 +38,13 @@ public class Product {
     @JoinColumn(name = "packshape_id")
     private PackShape packShape;//bottle, can , pouch, bar, box
 
-    @ManyToMany(mappedBy = "products")
-    private List<Machine> machines;
+    @OneToMany
+    @JoinColumn(name = "product_id")
+    private List<SlotConfig> slots = new ArrayList<>();
+
+
+//    @ManyToMany(mappedBy = "products")
+//    private List<Machine> machines;
 
     @Column(name = "created_on")
     private LocalDateTime createdOn;
@@ -88,13 +95,13 @@ public class Product {
 
 
 
-    public List<Machine> getMachines() {
-        return machines;
-    }
-
-    public void setMachines(List<Machine> machines) {
-        this.machines = machines;
-    }
+//    public List<Machine> getMachines() {
+//        return machines;
+//    }
+//
+//    public void setMachines(List<Machine> machines) {
+//        this.machines = machines;
+//    }
 
     public LocalDateTime getCreatedOn() {
         return createdOn;
