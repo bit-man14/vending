@@ -35,7 +35,7 @@
 <br>
 <div class="container">
     <div class="row">
-        <div class="col-md-6 col-md-offset-3">
+        <div class="col-md-10 col-md-offset-1">
             <h1>List of Products</h1>
             <table class="table table-bordered">
                 <thead>
@@ -90,11 +90,11 @@
             </hr>
 
             <div th:if="${totalPages > 1}">
-                <div class="row col-sm-10">
-                    <div class="col-sm-5">
+                <div class="row col-sm-14">
+                    <div class="col-sm-3">
                         Total Rows: [[${totalItems}]]
                     </div>
-                    <div class="col-sm-3">
+                    <div class="col-sm-7">
                          <span th:each="i: ${#numbers.sequence(1, totalPages)}">
                           <a th:if="${currentPage != i}"
                              th:href="@{'/products/page/' + ${i}+ '?sortField=' + ${sortField} + '&sortDir=' + ${sortDir}}">[[${i}]]</a>

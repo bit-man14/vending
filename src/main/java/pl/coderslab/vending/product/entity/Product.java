@@ -24,8 +24,6 @@ public class Product {
     @Size(min = 3)
     private String name;
 
-
-    @Min(5)
     @Max(19)
     private int forSpiralSize;
 
