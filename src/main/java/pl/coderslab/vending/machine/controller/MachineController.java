@@ -34,10 +34,16 @@ public class MachineController {
         model.addAttribute("machines", machines);
         return "machines";
     }
+    @GetMapping("/slots/{mach_id}")
+    public String slotsByMachine(@PathVariable Long mach_id, Model model){
+        List<SlotConfig> slotConfigList=machineServiceImpl.findByMachine_idAndActive(mach_id,true);
+        model.addAttribute("slots",slotConfigList);
+        return "slots";
+    }
 
     @GetMapping("/deletemachine/{id}")
     public String delete(@PathVariable Long id) {
-        machineServiceImpl.deleteById(id);
+        machineServiceImpl.deleteMachineById(id);
         return "redirect:/machines";
     }
 
@@ -82,5 +88,21 @@ public class MachineController {
         }
         machineServiceImpl.saveMachine(machine);
         return "redirect:/machines?success";
+    }
+    @GetMapping("/editslot/{id}")
+    public String editSlotForm(@PathVariable Long id, Model model) {
+        SlotConfig slotConfig = machineServiceImpl.getSlot(id);
+        model.addAttribute("slot", slotConfig);
+        return "editslotform";
+    }
+
+    @PostMapping("/editslot/{mach_id}")
+    public String editSlot(@PathVariable Long mach_id, @Valid SlotConfig slotConfig, BindingResult result) {
+        if (result.hasErrors()) {
+            return "editslotform";
+        }
+
+        machineServiceImpl.saveEditSlot(slotConfig);
+        return "redirect:/slots/"+mach_id;
     }
 }

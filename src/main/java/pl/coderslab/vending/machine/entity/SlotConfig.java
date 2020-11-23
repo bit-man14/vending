@@ -1,6 +1,7 @@
 package pl.coderslab.vending.machine.entity;
 
 import lombok.*;
+import pl.coderslab.vending.product.entity.Product;
 
 import javax.persistence.*;
 
@@ -17,6 +18,8 @@ public class SlotConfig {
     private int spiralSize;
     private boolean isActive;
     private Long machine_id;
+    //private Long product_id;
+
 
     public Long getId() {
         return id;
@@ -42,7 +45,7 @@ public class SlotConfig {
         this.spiralSize = spiralSize;
     }
 
-    public boolean isActive() {
+    public boolean getIsActive() {
         return isActive;
     }
 
@@ -50,9 +53,11 @@ public class SlotConfig {
         isActive = active;
     }
 
-//    @ManyToOne
+    //    @ManyToOne
 //    @JoinColumn(name = "machine_id")
 //    private Machine machine;
+    @ManyToOne
+    private Product product;
 
     @Override
     public String toString() {
@@ -72,4 +77,19 @@ public class SlotConfig {
         this.machine_id = machine_id;
     }
 
+//    public Long getProduct_id() {
+//        return product_id;
+//    }
+//
+//    public void setProduct_id(Long product_id) {
+//        this.product_id = product_id;
+//    }
+
+    public Product getProduct() {
+        return product;
+    }
+
+    public void setProduct(Product product) {
+        this.product = product;
+    }
 }

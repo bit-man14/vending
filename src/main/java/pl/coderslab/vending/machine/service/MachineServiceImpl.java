@@ -79,14 +79,31 @@ public class MachineServiceImpl implements MachineService {
 
     @Override
     @Transactional
+    public void saveEditSlot(SlotConfig slotConfig) {
+        slotRepository.save(slotConfig);
+    }
+
+    @Override
+    @Transactional
     public Machine getMachine(long id) throws ResourceNotFoundException {
         return machineRepository.findById(id).orElseThrow(
                 () -> new ResourceNotFoundException(String.valueOf(id)));
     }
 
     @Override
-    public void deleteById(Long id) {
+    public SlotConfig getSlot(long id) throws ResourceNotFoundException {
+        return slotRepository.findById(id).orElseThrow(
+                () -> new ResourceNotFoundException(String.valueOf(id)));
+    }
+
+    @Override
+    public void deleteMachineById(Long id) {
         machineRepository.deleteById(id);
+    }
+
+    @Override
+    public List<SlotConfig> findByMachine_idAndActive(Long machine_id, boolean isActive) {
+        return slotRepository.findByMachine_idAndActive(machine_id,isActive);
     }
 
 

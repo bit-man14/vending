@@ -8,4 +8,5 @@ import pl.coderslab.vending.product.entity.Product;
 
 public interface ProductRepository extends JpaRepository<Product,Long> , PagingAndSortingRepository<Product, Long> {
     Page<Product> findAll(Pageable pageable);
+
 }

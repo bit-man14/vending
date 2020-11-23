@@ -9,7 +9,7 @@
     <!--    <link rel="stylesheet" type="text/css" th:href="@{/webjars/bootstrap/3.3.7/css/bootstrap.min.css}" />-->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
           integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-    <title>Machines</title>
+    <title>Slots in machine</title>
 </head>
 <body>
 <nav class="navbar navbar-inverse navbar-fixed-top">
@@ -22,9 +22,9 @@
                     class="icon-bar"></span>
             </button>
             <a class="navbar-brand" href="#" th:href="@{/}">HOME</a>
-            <a th:if="${#authorization.expression('hasAnyAuthority(''ADMIN'',''USER'')')}">
-                <a class="navbar-brand" href="#" th:href="@{/addmachine}">Add machine</a>
-            </a>
+<!--            <a th:if="${#authorization.expression('hasAnyAuthority(''ADMIN'',''USER'')')}">-->
+<!--                <a class="navbar-brand" href="#" th:href="@{/addslo}">Add machine</a>-->
+<!--            </a>-->
 
         </div>
         <a sec:authorize="isAuthenticated()"><a class="navbar-brand"th:href="@{/logout}" style="color: green ">Logout</a></a>
@@ -35,53 +35,37 @@
 <div class="container">
     <div class="row">
         <div class="col-md-10 col-md-offset-1">
-            <h1>List of Machines</h1>
+            <h1>List of Slots</h1>
             <table class="table table-bordered">
                 <thead>
                 <tr>
-                    <th>Id</th>
-                    <th>Name</th>
-                    <th>Type</th>
-                    <th>Serial</th>
-                    <th>Shelves</th>
-                    <th>Slots per shelf</th>
-                    <th>Date of installation</th>
+                    <th>Slot No</th>
+                    <th>Active</th>
+                    <th>Product</th>
+                    <th>Price</th>
+                    <th>Spiral size</th>
+
                     <div th:if="${#authorization.expression('hasAnyAuthority(''ADMIN'',''USER'')')}">
                         <th>Edit Link</th>
                     </div>
-                    <div th:if="${#authorization.expression('hasAuthority(''ADMIN'')')}">
-                        <th>Delete Link</th>
-                    </div>
-                    <div th:if="${#authorization.expression('hasAuthority(''ADMIN'')')}">
-                        <th>Generate slots</th>
-                    </div>
-                    <div th:if="${#authorization.expression('hasAuthority(''ADMIN'')')}">
-                        <th>Show products</th>
-                    </div>
+
+
                 </tr>
                 </thead>
                 <tbody>
-                <tr th:each="machine:${machines}">
-                    <td th:text="${machine.id}"/>
-                    <td th:text="${machine.name}"/>
-                    <td th:text="${machine.type}"/>
-                    <td th:text="${machine.serial}"/>
-                    <td th:text="${machine.shelves}"/>
-                    <td th:text="${machine.slotsPerShelf}"/>
-                    <td th:text="${machine.instDate}"/>
+                <tr th:each="slot:${slots}">
+                    <td th:text="${slot.slotNo}"/>
+                    <td th:text="${slot.getIsActive()}"/>
+                    <td th:text="${slot.product.name}"/>
+                    <td th:text="${slot.product.price}"/>
+                    <td th:text="${slot.spiralSize}"/>
+
 
                     <div th:if="${#authorization.expression('hasAnyAuthority(''ADMIN'',''USER'')')}">
-                        <td><a th:href="@{'/editmachine/'+${machine.id}}">Edit</a></td>
+                        <td><a th:href="@{'/editslot/'+${slot.id}}">Edit</a></td>
                     </div>
-                    <div th:if="${#authorization.expression('hasAuthority(''ADMIN'')')}">
-                        <td><a th:href="@{'/deletemachine/'+${machine.id}}">Delete</a></td>
-                    </div>
-                    <div th:if="${#authorization.expression('hasAuthority(''ADMIN'')')}">
-                        <td><a th:href="@{'/saveslot/'+${machine.id}}">Generate slots</a></td>
-                    </div>
-                    <div th:if="${#authorization.expression('hasAnyAuthority(''ADMIN'',''USER'')')}">
-                        <td><a th:href="@{'/slots/'+${machine.id}}">Products</a></td>
-                    </div>
+
+
                 </tr>
                 </tbody>
             </table>
