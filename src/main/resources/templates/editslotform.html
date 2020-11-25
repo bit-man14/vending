@@ -39,26 +39,24 @@
             </div>
 
             <h1>Edit slot</h1>
-            <form th:action="@{'/editslot/'+${mach_id}}" th:object="${slot}" method="post">
+            <form th:action="@{'/editslot/'+${slot.machine_id}}" th:object="${slot}" method="post">
 
                 <span class="error-message" th:if="${#fields.hasGlobalErrors()}"
                       th:each="error : ${#fields.errors('global')}" th:text="${error}">Validation error
                 </span>
-<!--                <div class="form-group" th:classappend="${#fields.hasErrors('machine_id')}? 'has-error':''">-->
-<!--                    &lt;!&ndash;                    <label for="password" class="control-label">Password</label>&ndash;&gt;-->
-<!--                    <input id="machine_id" type="hidden" class="form-control" th:field="*{machine_id}"/>-->
-<!--                    <span class="error-message" th:each="error : ${#fields.errors('machineId')}" th:text="${error}">Validation-->
-<!--                        error-->
-<!--                    </span>-->
-<!--                </div>-->
                 <div class="form-group">
-                    <label for="id" class="control-label">Id</label>
+<!--                    <label for="id" class="control-label">Id</label>-->
                     <input id="id" type="text" class="form-control" th:field="*{id}" readonly="readonly">
+                    <!--                    <div th:if="${#fields.hasErrors('id')}" th:errors="*{id}">Name Error</div>-->
+                </div>
+                <div class="form-group">
+                    <label for="machine_id" class="control-label">Id</label>
+                    <input id="machine_id" type="hidden" class="form-control" th:field="*{machine_id}">
                     <!--                    <div th:if="${#fields.hasErrors('id')}" th:errors="*{id}">Name Error</div>-->
                 </div>
                 <div class="form-group" th:classappend="${#fields.hasErrors('isActive')}? 'has-error':''">
                     <label for="isActive" class="control-label">Active</label>
-                    <input id="isActive" type="checkbox" th:field="*{isActive}"/>
+                    <input id="isActive" type="checkbox" th:field="*{isActive}" th:value="${isActive}"/>
                     <!-- <input id="isActive" type="checkbox" name="isActive" th:checked="${user.isActive} ? 'checked'"/>&lt;!&ndash; było th:checked&ndash;&gt;-->
                     <span class="error-message" th:each="error : ${#fields.errors('isActive')}" th:text="${error}">
                         Validation error</span>

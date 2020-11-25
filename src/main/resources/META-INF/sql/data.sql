@@ -9,10 +9,11 @@ INSERT INTO users (email, name, password, active) VALUES ('tom@gmail.com','Tom',
 INSERT INTO users (email, name, password, active) VALUES ('tom1@gmail.com','Adam', '$2a$10$BG4Khz7k/8pS0JyU4WI0CeiDDGeXREmffzAA9xwU91o5Clu9QKNPe', TRUE);
 INSERT INTO users (email, name, password, active) VALUES ('tom2@gmail.com','Guest', '$2a$10$BG4Khz7k/8pS0JyU4WI0CeiDDGeXREmffzAA9xwU91o5Clu9QKNPe', TRUE);
 INSERT INTO users (email, name, password, active) VALUES ('tom3@gmail.com','Józek', '$2a$10$BG4Khz7k/8pS0JyU4WI0CeiDDGeXREmffzAA9xwU91o5Clu9QKNPe', FALSE);
+INSERT INTO users (email, name, password, active) VALUES ('admin@admin.com','Admin', '$2a$10$fZN1YKQJNwiGHsAQyiWRfOLlJV8zSr2iKh6u52PKVVyMc7siG.QSG', TRUE);
 #possible roles
 SET @@auto_increment_increment=1;
 INSERT INTO `roles` (`name`) VALUES ('ADMIN');
-INSERT INTO `roles` (`name`) VALUES ('EDITOR');
+INSERT INTO `roles` (`name`) VALUES ('USER');
 INSERT INTO `roles` (`name`) VALUES ('READER');
 #roles for demo only
 SET @@auto_increment_increment=1;
@@ -21,6 +22,7 @@ INSERT INTO users_roles (user_id, role_id) VALUES (2, 2);
 INSERT INTO users_roles (user_id, role_id) VALUES (2, 3);
 INSERT INTO users_roles (user_id, role_id) VALUES (3, 2);
 INSERT INTO users_roles (user_id, role_id) VALUES (4, 3);
+INSERT INTO users_roles (user_id, role_id) VALUES (5, 1);
 #possible package shape
 SET @@auto_increment_increment=1;
 INSERT INTO pack_shape (name) VALUES ('can');

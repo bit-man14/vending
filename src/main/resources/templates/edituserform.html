@@ -9,7 +9,7 @@
     <!--    <link rel="stylesheet" type="text/css" th:href="@{/webjars/bootstrap/3.3.7/css/bootstrap.min.css}" />-->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
           integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-    <title>Registration</title>
+    <title>Edit User</title>
 </head>
 
 <body>
@@ -73,30 +73,40 @@
                         error
                     </span>
                 </div>
-<!--                <div class="form-group" th:classappend="${#fields.hasErrors('user.roles')}? 'has-error':''">-->
-<!--                    <label for="user.roles" class="control-label">E-mail</label>-->
-<!--                    <input id="user.roles" class="form-control" th:field="*{user.roles}"/>-->
-<!--                    <span class="error-message" th:each="error : ${#fields.errors('user.roles')}" th:text="${error}">Validation-->
-<!--                        error-->
-<!--                    </span>-->
-<!--                </div>-->
                 <div class="form-group" th:classappend="${#fields.hasErrors('password')}? 'has-error':''">
-<!--                    <label for="password" class="control-label">Password</label>-->
+                    <!--                    <label for="password" class="control-label">Password</label>-->
                     <input id="password" type="hidden" class="form-control" th:field="*{password}"/>
                     <span class="error-message" th:each="error : ${#fields.errors('password')}" th:text="${error}">Validation
                         error
                     </span>
                 </div>
 
-
                 <div class="form-group" th:classappend="${#fields.hasErrors('isActive')}? 'has-error':''">
                     <label for="isActive" class="control-label">Active</label>
-                    <input id="isActive" type="checkbox" th:field="*{isActive}"/>
-                    <!-- <input id="isActive" type="checkbox" name="isActive" th:checked="${user.isActive} ? 'checked'"/>&lt;!&ndash; było th:checked&ndash;&gt;-->
+                    <!--                    <input id="isActive" type="checkbox" th:field="*{isActive}" th:value="${user.isActive}"/>-->
+                    <input id="isActive" type="text" class="form-control" th:field="*{isActive}">
                     <span class="error-message" th:each="error : ${#fields.errors('isActive')}" th:text="${error}">
                         Validation error</span>
                 </div>
 
+                <div>
+                    <label "control-label">Roles:
+                    <input type="checkbox" name="roles"
+                    th:each="role : ${allRoles}"
+                           th:text="${role.name} + ' '"
+                           th:value="${role.id}"
+                           th:field="*{roles}"
+
+                    />
+                    </label>
+                </div>
+
+<!--                <div>-->
+<!--                    <label "control-label">Roles:-->
+<!--                    <input type="checkbox" th:field="*{enabled}"/>-->
+<!--                    Enabled-->
+<!--                    </label>-->
+<!--                </div>-->
 
                 <div class="form-group">
                     <button type="submit" class="btn btn-success">Save</button>

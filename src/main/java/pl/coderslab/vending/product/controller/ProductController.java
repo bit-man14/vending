@@ -76,7 +76,10 @@ public class ProductController {
     @GetMapping("/editproduct/{id}")
     public String editMachineForm(@PathVariable Long id, Model model) {
         Product product = productServiceImpl.getProduct(id);
+        List<Product> products=productServiceImpl.getProducts();
+        List<PackShape> packShapes=productServiceImpl.getPackshape();
         model.addAttribute("product", product);
+        model.addAttribute("packshapes", packShapes);
         return "editproductform";
     }
 

@@ -1,6 +1,5 @@
 package pl.coderslab.vending.user.entity;
 
-import lombok.*;
 
 import javax.persistence.*;
 import javax.validation.constraints.Email;
@@ -9,8 +8,6 @@ import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Size;
 import java.time.LocalDateTime;
 import java.util.Collection;
-
-
 
 
 @Entity
@@ -142,23 +139,35 @@ public class User {
         this.id = id;
     }
 
-    public Collection<Role> getRoles() {
-        return roles;
-    }
 
     public void setRoles(Collection<Role> roles) {
         this.roles = roles;
     }
-//
-//    public Collection<Role> getRoles() {
-//        return roles;
-//    }
-//
-//    public void setRoles(Set<Role> roles) {
-//
-//        this.roles = roles;
-//        //roles.add(new Role("READER"));
-//    }
+
+    public boolean isActive() {
+        return active;
+    }
+
+    public LocalDateTime getCreatedOn() {
+        return createdOn;
+    }
+
+    public void setCreatedOn(LocalDateTime createdOn) {
+        this.createdOn = createdOn;
+    }
+
+    public LocalDateTime getUpdatedOn() {
+        return updatedOn;
+    }
+
+    public void setUpdatedOn(LocalDateTime updatedOn) {
+        this.updatedOn = updatedOn;
+    }
+
+    public Collection<Role> getRoles() {
+        return roles;
+    }
+
 
 
 }

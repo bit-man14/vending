@@ -97,11 +97,11 @@ public class MachineController {
     }
 
     @PostMapping("/editslot/{mach_id}")
-    public String editSlot(@PathVariable Long mach_id, @Valid SlotConfig slotConfig, BindingResult result) {
+    public String editSlot(@PathVariable Long mach_id,@Valid SlotConfig slotConfig, BindingResult result) {
         if (result.hasErrors()) {
             return "editslotform";
         }
-
+        slotConfig.setMachine_id(mach_id);
         machineServiceImpl.saveEditSlot(slotConfig);
         return "redirect:/slots/"+mach_id;
     }

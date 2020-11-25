@@ -5,7 +5,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
+import pl.coderslab.vending.user.entity.Role;
 import pl.coderslab.vending.user.entity.User;
+import pl.coderslab.vending.user.service.RoleService;
 import pl.coderslab.vending.user.service.UserServiceImpl;
 
 import javax.validation.Valid;
@@ -17,8 +19,11 @@ public class UserController {
 
     final UserServiceImpl userService;
 
-    public UserController(UserServiceImpl userService) {
+    final RoleService roleService;
+
+    public UserController(UserServiceImpl userService, RoleService roleService) {
         this.userService = userService;
+        this.roleService = roleService;
     }
 
     @GetMapping("/")
@@ -49,7 +54,8 @@ public class UserController {
     public String editUserForm(@PathVariable Long id, Model model) {
         User user = userService.getUser(id);
         model.addAttribute("user", user);
-
+        List<Role> roles = (List<Role>) roleService.getRoles();
+        model.addAttribute("allRoles", roles);
         return "edituserform";
     }
 

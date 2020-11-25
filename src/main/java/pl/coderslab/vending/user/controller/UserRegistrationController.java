@@ -9,11 +9,14 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import pl.coderslab.vending.user.dto.UserRegistrationDto;
+import pl.coderslab.vending.user.entity.Role;
 import pl.coderslab.vending.user.entity.User;
+import pl.coderslab.vending.user.service.RoleService;
 import pl.coderslab.vending.user.service.UserService;
 import pl.coderslab.vending.user.service.UserServiceImpl;
 
 import javax.validation.Valid;
+import java.util.List;
 
 
 @Controller
@@ -29,7 +32,9 @@ public class UserRegistrationController {
     @GetMapping
     public String showRegistrationForm(Model model) {
         UserRegistrationDto newUser = new UserRegistrationDto();
+
         model.addAttribute("user", newUser);
+
         return "registration";
     }
 
