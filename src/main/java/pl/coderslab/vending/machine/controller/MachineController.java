@@ -2,7 +2,6 @@ package pl.coderslab.vending.machine.controller;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -11,7 +10,8 @@ import pl.coderslab.vending.machine.entity.Machine;
 import pl.coderslab.vending.machine.entity.SlotConfig;
 import pl.coderslab.vending.machine.service.MachineService;
 import pl.coderslab.vending.machine.service.MachineServiceImpl;
-import pl.coderslab.vending.user.entity.User;
+import pl.coderslab.vending.product.entity.Product;
+import pl.coderslab.vending.product.service.ProductServiceImpl;
 
 import javax.validation.Valid;
 import java.util.List;
@@ -23,9 +23,12 @@ public class MachineController {
 
     private MachineService machineService;
     private MachineServiceImpl machineServiceImpl;
+    private ProductServiceImpl productServiceImpl;
 
-    public MachineController(MachineServiceImpl machineServiceImpl) {
+    public MachineController(MachineService machineService, MachineServiceImpl machineServiceImpl, ProductServiceImpl productServiceImpl) {
+        this.machineService = machineService;
         this.machineServiceImpl = machineServiceImpl;
+        this.productServiceImpl = productServiceImpl;
     }
 
     @GetMapping("/machines")
@@ -36,7 +39,8 @@ public class MachineController {
     }
     @GetMapping("/slots/{mach_id}")
     public String slotsByMachine(@PathVariable Long mach_id, Model model){
-        List<SlotConfig> slotConfigList=machineServiceImpl.findByMachine_idAndActive(mach_id,true);
+        List<SlotConfig> slotConfigList=machineServiceImpl.findByMachine_idAndActive(mach_id);
+
         model.addAttribute("slots",slotConfigList);
         return "slots";
     }
@@ -92,7 +96,9 @@ public class MachineController {
     @GetMapping("/editslot/{id}")
     public String editSlotForm(@PathVariable Long id, Model model) {
         SlotConfig slotConfig = machineServiceImpl.getSlot(id);
+        List<Product> products=productServiceImpl.getProducts();
         model.addAttribute("slot", slotConfig);
+        model.addAttribute("products", products);
         return "editslotform";
     }
 
@@ -103,6 +109,6 @@ public class MachineController {
         }
         slotConfig.setMachine_id(mach_id);
         machineServiceImpl.saveEditSlot(slotConfig);
-        return "redirect:/slots/"+mach_id;
+        return "redirect:/slots/"+mach_id+"?success";
     }
 }

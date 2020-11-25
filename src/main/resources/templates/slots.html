@@ -39,6 +39,7 @@
             <table class="table table-bordered">
                 <thead>
                 <tr>
+                    <th>Machine ID</th>
                     <th>Slot No</th>
                     <th>Active</th>
                     <th>Product</th>
@@ -54,11 +55,13 @@
                 </thead>
                 <tbody>
                 <tr th:each="slot:${slots}">
+                    <td th:text="${mach_id}"/>
                     <td th:text="${slot.slotNo}"/>
                     <td th:text="${slot.getIsActive()}"/>
-                    <td th:text="${slot.product.name}"/>
-                    <td th:text="${slot.product.price}"/>
-                    <td th:text="${slot.spiralSize}"/>
+                    <td th:text="${slot.getIsActive() != false} ? ${slot.product.name}">not active</td>
+                    <td th:text="${slot.getIsActive() != false} ? ${slot.product.price}">not active</td>
+                    <td th:text="${slot.getIsActive() != false} ? ${slot.spiralSize}">not active</td>
+
 
 
                     <div th:if="${#authorization.expression('hasAnyAuthority(''ADMIN'',''USER'')')}">

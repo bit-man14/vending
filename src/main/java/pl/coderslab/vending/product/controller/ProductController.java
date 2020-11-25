@@ -74,9 +74,9 @@ public class ProductController {
     }
 
     @GetMapping("/editproduct/{id}")
-    public String editMachineForm(@PathVariable Long id, Model model) {
+    public String editProductForm(@PathVariable Long id, Model model) {
         Product product = productServiceImpl.getProduct(id);
-        List<Product> products=productServiceImpl.getProducts();
+        //List<Product> products=productServiceImpl.getProducts();
         List<PackShape> packShapes=productServiceImpl.getPackshape();
         model.addAttribute("product", product);
         model.addAttribute("packshapes", packShapes);
@@ -84,7 +84,7 @@ public class ProductController {
     }
 
     @PostMapping("/editproduct")
-    public String editMachine(@Valid Product product, BindingResult result) {
+    public String editProduct(@Valid Product product, BindingResult result) {
         if (result.hasErrors()) {
             return "editproductform";
         }

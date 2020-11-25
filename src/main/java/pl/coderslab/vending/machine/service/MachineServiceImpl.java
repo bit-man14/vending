@@ -102,8 +102,8 @@ public class MachineServiceImpl implements MachineService {
     }
 
     @Override
-    public List<SlotConfig> findByMachine_idAndActive(Long machine_id, boolean isActive) {
-        return slotRepository.findByMachine_idAndActive(machine_id,isActive);
+    public List<SlotConfig> findByMachine_idAndActive(Long machine_id) {
+        return slotRepository.findByMachine_idAndActive(machine_id);
     }
 
 
