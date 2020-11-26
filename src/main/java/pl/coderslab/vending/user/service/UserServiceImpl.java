@@ -19,6 +19,9 @@ import pl.coderslab.vending.user.repository.UserRepository;
 import java.util.*;
 import java.util.stream.Collectors;
 
+import static java.util.Arrays.*;
+
+
 @Service
 public class UserServiceImpl implements UserService {
     @Autowired
@@ -41,7 +44,7 @@ public class UserServiceImpl implements UserService {
         user.setActive(true);
         //Role readerRole = roleRepository.findByName("READER");
         //user.setRoles(Arrays.asList(readerRole));
-        user.setRoles(Arrays.asList(new Role("READER")));
+        user.setRoles(asList(new Role("READER")));
         return userRepository.save(user);
 
     }
@@ -53,10 +56,25 @@ public class UserServiceImpl implements UserService {
         if (user.getPassword() != null) {
             user.setPassword(passwordEncoder.encode(user.getPassword()));
         }
-        Role readerRole = roleRepository.findByName("READER");
-        user.setRoles(Arrays.asList(readerRole));
+        //Role readerRole = roleRepository.findByName("READER");
+//        List<Long> rolesId=roleRepository.findRolesIdByUserId(user.getId());
+//        List<Role> newRoles=new ArrayList<>();
+//        for (Long id : rolesId) {
+//            newRoles.add(getRole(id));
+//        }
+//        Collection<Long> rolesID=roleRepository.findRolesIdByUserId(user.getId());
+//        Role readerRole = (Role) roleRepository.findRolesIdByUserId();
+        //user.setRoles(Arrays.asList(readerRole));
+        //user.setRoles(newRoles);
         userRepository.save(user);
     }
+
+    @Transactional
+    public Role getRole(long id) throws ResourceNotFoundException {
+        return roleRepository.findById(id).orElseThrow(
+                () -> new ResourceNotFoundException(String.valueOf(id)));
+    }
+
 
     @Override
     public List<User> allUsers() {

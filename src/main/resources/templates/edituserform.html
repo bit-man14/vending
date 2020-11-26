@@ -84,21 +84,21 @@
                 <div class="form-group" th:classappend="${#fields.hasErrors('isActive')}? 'has-error':''">
                     <label for="isActive" class="control-label">Active</label>
                     <!--                    <input id="isActive" type="checkbox" th:field="*{isActive}" th:value="${user.isActive}"/>-->
-                    <input id="isActive" type="text" class="form-control" th:field="*{isActive}">
+                    <input id="isActive" type="checkbox" th:field="*{isActive}" th:value="${user.isActive}"/>
                     <span class="error-message" th:each="error : ${#fields.errors('isActive')}" th:text="${error}">
                         Validation error</span>
                 </div>
 
                 <div>
-                    <label "control-label">Roles:
+                    <label "control-label">Roles:</label>
                     <input type="checkbox" name="roles"
                     th:each="role : ${allRoles}"
                            th:text="${role.name} + ' '"
                            th:value="${role.id}"
                            th:field="*{roles}"
-
+                            &nbsp;
                     />
-                    </label>
+
                 </div>
 
 <!--                <div>-->
