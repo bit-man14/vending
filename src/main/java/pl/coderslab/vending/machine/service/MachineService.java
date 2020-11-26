@@ -21,5 +21,7 @@ public interface MachineService {
 
     void deleteMachineById(Long id);
 
+
+
     List<SlotConfig> findByMachine_idAndActive(Long machine_id);
 }

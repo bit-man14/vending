@@ -27,7 +27,8 @@
             </a>
 
         </div>
-        <a sec:authorize="isAuthenticated()"><a class="navbar-brand"th:href="@{/logout}" style="color: green ">Logout</a></a>
+        <a sec:authorize="isAuthenticated()"><a class="navbar-brand" th:href="@{/logout}"
+                                                style="color: green ">Logout</a></a>
     </div>
 </nav>
 <br>
@@ -76,18 +77,19 @@
                     <div th:if="${#authorization.expression('hasAuthority(''ADMIN'')')}">
                         <td><a th:href="@{'/deletemachine/'+${machine.id}}">Delete</a></td>
                     </div>
+<!--                    generate new slots-->
                     <div th:if="${#authorization.expression('hasAuthority(''ADMIN'')')}">
                         <td><a th:href="@{'/saveslot/'+${machine.id}}">Generate slots</a></td>
                     </div>
-                    <div th:if="${#authorization.expression('hasAnyAuthority(''ADMIN'',''USER'')')}">
-                        <td><a th:href="@{'/slots/'+${machine.id}}">Products</a></td>
-                    </div>
+
+                    <td><a th:href="@{'/slots/'+${machine.id}}">Products</a></td>
+
                 </tr>
                 </tbody>
             </table>
         </div>
 
-        </div>
+    </div>
 
 </div>
 

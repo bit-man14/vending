@@ -9,6 +9,7 @@ import pl.coderslab.vending.machine.entity.Machine;
 import pl.coderslab.vending.machine.entity.SlotConfig;
 import pl.coderslab.vending.machine.repository.MachineRepository;
 import pl.coderslab.vending.machine.repository.SlotRepository;
+import pl.coderslab.vending.product.entity.Product;
 
 import java.util.List;
 
@@ -36,14 +37,13 @@ public class MachineServiceImpl implements MachineService {
         machineRepository.save(machine);
     }
 
-    //    public void saveEdit(Machine machine) {
-//        machineRepository.save(machine);
-//    }
+
     @Override
     public boolean saveSlot(long mach_id) {
         Machine machine = getMachine(mach_id);
         SlotConfig slotConfig;
-
+        Product product=new Product();
+        product.setId(1L);
         int sh = machine.getShelves();
         int sl = machine.getSlotsPerShelf();
 
@@ -57,6 +57,7 @@ public class MachineServiceImpl implements MachineService {
                 slotConfig.setSpiralSize(0);//default value
                 slotConfig.setActive(true);
                 slotConfig.setMachine_id(mach_id);
+                slotConfig.setProduct(product);
                 slotRepository.save(slotConfig);
             }
         } else {//spirals
@@ -69,6 +70,7 @@ public class MachineServiceImpl implements MachineService {
                     slotConfig.setSpiralSize(6);//default value
                     slotConfig.setActive(true);
                     slotConfig.setMachine_id(mach_id);
+                    slotConfig.setProduct(product);
                     slotRepository.save(slotConfig);
                 }
             }
@@ -99,6 +101,11 @@ public class MachineServiceImpl implements MachineService {
     @Override
     public void deleteMachineById(Long id) {
         machineRepository.deleteById(id);
+    }
+
+
+    public void deleteSlotByMachineId(Long id) {
+        slotRepository.deleteSlotByMachId(id);
     }
 
     @Override

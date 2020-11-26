@@ -63,7 +63,8 @@ public class MachineController {
         if (result.hasErrors()) {
             return "editmachineform";
         }
-
+        //machineServiceImpl.saveEditSlot();
+        machine.setId(machine.getId());//test
         machineServiceImpl.saveMachine(machine);
         return "redirect:/machines?success";
     }
@@ -71,6 +72,8 @@ public class MachineController {
     @GetMapping("/saveslot/{id}")
     @ResponseBody
     public String saveSlot(@PathVariable Long id, Model model) {
+
+        machineServiceImpl.deleteSlotByMachineId(id);
         if (machineServiceImpl.saveSlot(id)) {
             return "Saved slots for machine id = " + id;
         }else{
@@ -107,6 +110,7 @@ public class MachineController {
         if (result.hasErrors()) {
             return "editslotform";
         }
+
         slotConfig.setMachine_id(mach_id);
         machineServiceImpl.saveEditSlot(slotConfig);
         return "redirect:/slots/"+mach_id+"?success";

@@ -37,13 +37,11 @@ public class UserServiceImpl implements UserService {
 
     public User save(UserRegistrationDto registration) {
         User user = new User();
-        //Role role = new Role();
         user.setName(registration.getName());
         user.setEmail(registration.getEmail());
         user.setPassword(passwordEncoder.encode(registration.getPassword()));
         user.setActive(true);
-        //Role readerRole = roleRepository.findByName("READER");
-        //user.setRoles(Arrays.asList(readerRole));
+
         user.setRoles(asList(new Role("READER")));
         return userRepository.save(user);
 
@@ -51,21 +49,9 @@ public class UserServiceImpl implements UserService {
 
 
     public void saveEdit(User user) {
-
-        //user.setActive(user.getIsActive());
         if (user.getPassword() != null) {
             user.setPassword(passwordEncoder.encode(user.getPassword()));
         }
-        //Role readerRole = roleRepository.findByName("READER");
-//        List<Long> rolesId=roleRepository.findRolesIdByUserId(user.getId());
-//        List<Role> newRoles=new ArrayList<>();
-//        for (Long id : rolesId) {
-//            newRoles.add(getRole(id));
-//        }
-//        Collection<Long> rolesID=roleRepository.findRolesIdByUserId(user.getId());
-//        Role readerRole = (Role) roleRepository.findRolesIdByUserId();
-        //user.setRoles(Arrays.asList(readerRole));
-        //user.setRoles(newRoles);
         userRepository.save(user);
     }
 
