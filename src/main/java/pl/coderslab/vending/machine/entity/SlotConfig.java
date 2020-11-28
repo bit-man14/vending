@@ -4,6 +4,8 @@ import lombok.*;
 import pl.coderslab.vending.product.entity.Product;
 
 import javax.persistence.*;
+import javax.validation.constraints.Max;
+import javax.validation.constraints.Min;
 
 
 @AllArgsConstructor
@@ -15,6 +17,8 @@ public class SlotConfig {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private int slotNo;
+    @Min(1)
+    @Max(19)
     private int spiralSize;
     private boolean isActive;
     private Long machine_id;

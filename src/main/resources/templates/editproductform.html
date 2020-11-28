@@ -6,7 +6,6 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
     <meta name="viewport" content="width=device-width, initial-scale=1"/>
 
-    <!--    <link rel="stylesheet" type="text/css" th:href="@{/webjars/bootstrap/3.3.7/css/bootstrap.min.css}" />-->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
           integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
     <title>Edit product</title>
@@ -38,7 +37,7 @@
                 <div class="alert alert-info">You've successfully edited product data!</div>
             </div>
 
-            <h1>Edit user data</h1>
+            <h1>Edit product data</h1>
             <form th:action="@{/editproduct}" th:object="${product}" method="post">
 
                 <span class="error-message" th:if="${#fields.hasGlobalErrors()}"
@@ -46,19 +45,21 @@
                 </span>
 
                 <div class="form-group">
-                    <label for="id" class="control-label">Id</label>
+                    <label for="id" class="control-label">Product Id</label>
                     <input id="id" type="text" class="form-control" th:field="*{id}" readonly="readonly">
                     <!--                    <div th:if="${#fields.hasErrors('id')}" th:errors="*{id}">Name Error</div>-->
                 </div>
+
                 <div class="form-group">
                     <label for="name" class="control-label">Name</label>
                     <input id="name" type="text" class="form-control" th:field="*{name}">
                     <div th:if="${#fields.hasErrors('name')}" th:errors="*{name}">Name Error</div>
                 </div>
+
                 <div class="form-group">
                     <label for="packShape.name" class="control-label">Pack shape</label>
                     <select class="form-control" name="packShape">
-                        <option id="packShape.name"th:each="pack : ${packshapes}"
+                        <option id="packShape.name" th:each="pack : ${packshapes}"
                                 th:value="${pack.id}"
                                 th:text="${pack.name}"
                                 th:field="*{packShape}">
@@ -66,20 +67,6 @@
                     </select>
                 </div>
 
-<!--                <div class="form-group" th:classappend="${#fields.hasErrors('packShape.name')}? 'has-error':''">-->
-<!--                    <label for="packShape.name" class="control-label">Pack shape (1-can, 2-bottle, 3-pouch, 4-box, 5-bar, 6-cup)</label>-->
-<!--                    <input id="packShape.name" class="form-control" name="packs"-->
-<!--                           <option th:each="pack : ${packshapes}"-->
-<!--                           th:text="${pack.name}"-->
-<!--                           th:value="${pack.id}"-->
-<!--                           th:field="*{packShape}">-->
-<!--                    </option>-->
-
-
-<!--                    <span class="error-message" th:each="error : ${#fields.errors('packShape.name')}" th:text="${error}">Validation-->
-<!--                        error-->
-<!--                    </span>-->
-<!--                </div>-->
 
                 <div class="form-group" th:classappend="${#fields.hasErrors('forSpiralSize')}? 'has-error':''">
                     <label for="forSpiralSize" class="control-label">Spiral Size</label>
@@ -107,8 +94,6 @@
     </div>
 </div>
 
-<!--<script type="text/javascript" th:src="@{/webjars/jquery/3.2.1/jquery.min.js/}"></script>-->
-<!--<script type="text/javascript" th:src="@{/webjars/bootstrap/3.3.7/js/bootstrap.min.js}"></script>-->
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
         integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
         crossorigin="anonymous"></script>

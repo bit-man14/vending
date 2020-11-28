@@ -1,7 +1,6 @@
 package pl.coderslab.vending.product.entity;
 
 import lombok.*;
-import pl.coderslab.vending.machine.entity.Machine;
 import pl.coderslab.vending.machine.entity.SlotConfig;
 
 import javax.persistence.*;

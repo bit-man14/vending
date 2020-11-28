@@ -23,5 +23,5 @@ public interface MachineService {
 
 
 
-    List<SlotConfig> findByMachine_idAndActive(Long machine_id);
+    List<SlotConfig> findByMachineId(Long machine_id);
 }

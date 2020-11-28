@@ -39,7 +39,7 @@
             <table class="table table-bordered">
                 <thead>
                 <tr>
-                    <th>Machine ID</th>
+                    <th>Slot ID</th>
                     <th>Slot No</th>
                     <th>Active</th>
                     <th>Product</th>
@@ -55,17 +55,19 @@
                 </thead>
                 <tbody>
                 <tr th:each="slot:${slots}">
-                    <td th:text="${mach_id}"/>
+                    <td th:text="${slot.id}"/>
                     <td th:text="${slot.slotNo}"/>
-                    <td th:text="${slot.getIsActive()}"/>
-                    <td th:text="${slot.getIsActive() != false} ? ${slot.product.name}">not active</td>
-                    <td th:text="${slot.getIsActive() != false} ? ${slot.product.price}">not active</td>
-                    <td th:text="${slot.getIsActive() != false} ? ${slot.spiralSize}">not active</td>
+                    <td th:text="${slot.isActive}"/>
+                    <td th:text="${slot.product.name}"/>
+                    <td th:text="${slot.product.price}"/>
+                    <td th:text="${slot.spiralSize}"/>
+<!--                    example of condition-->
+<!--                    <td th:text="${slot.getIsActive() != false} ? ${slot.product.name}">not active</td>-->
 
 
 
                     <div th:if="${#authorization.expression('hasAnyAuthority(''ADMIN'',''USER'')')}">
-                        <td><a th:href="@{'/editslot/'+${slot.id}}">Edit</a></td>
+                        <td><a th:href="@{'/editslot/'+${slot.id}+'/'+${slot.machine_id}}">Edit</a></td>
                     </div>
 
 

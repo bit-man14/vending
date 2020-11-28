@@ -37,11 +37,12 @@ public class MachineController {
         model.addAttribute("machines", machines);
         return "machines";
     }
-    @GetMapping("/slots/{mach_id}")
-    public String slotsByMachine(@PathVariable Long mach_id, Model model){
-        List<SlotConfig> slotConfigList=machineServiceImpl.findByMachine_idAndActive(mach_id);
 
-        model.addAttribute("slots",slotConfigList);
+    @GetMapping("/slots/{mach_id}")
+    public String slotsByMachine(@PathVariable Long mach_id, Model model) {
+        List<SlotConfig> slotConfigList = machineServiceImpl.findByMachineId(mach_id);
+
+        model.addAttribute("slots", slotConfigList);
         return "slots";
     }
 
@@ -76,7 +77,7 @@ public class MachineController {
         machineServiceImpl.deleteSlotByMachineId(id);
         if (machineServiceImpl.saveSlot(id)) {
             return "Saved slots for machine id = " + id;
-        }else{
+        } else {
             return "Missing data to generate slots for id = " + id;
         }
 
@@ -96,12 +97,16 @@ public class MachineController {
         machineServiceImpl.saveMachine(machine);
         return "redirect:/machines?success";
     }
-    @GetMapping("/editslot/{id}")
-    public String editSlotForm(@PathVariable Long id, Model model) {
+
+    @GetMapping("/editslot/{id}/{mach_id}")
+    public String editSlotForm(@PathVariable Long id, @PathVariable Long mach_id, Model model) {
         SlotConfig slotConfig = machineServiceImpl.getSlot(id);
-        List<Product> products=productServiceImpl.getProducts();
+        Machine machine = machineServiceImpl.getMachine(mach_id);
+
+        List<Product> products = productServiceImpl.getProducts();
         model.addAttribute("slot", slotConfig);
         model.addAttribute("products", products);
+        model.addAttribute("machine", machine);
         return "editslotform";
     }
 
@@ -110,7 +115,6 @@ public class MachineController {
         if (result.hasErrors()) {
             return "editslotform";
         }
-
         slotConfig.setMachine_id(mach_id);
         machineServiceImpl.saveEditSlot(slotConfig);
         return "redirect:/slots/"+mach_id+"?success";

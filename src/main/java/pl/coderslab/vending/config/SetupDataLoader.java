@@ -55,10 +55,11 @@ public class SetupDataLoader implements
         user.setRoles(Arrays.asList(readerRole));
         user.setActive(true);
         userRepository.save(user);
-        product.setId(1L);
-        product.setName("new");
-        product.setPrice(0.1);
-        productRepository.save(product);
+        //insert product that will be default for generated slots
+//        product.setId(1L);
+//        product.setName("Empty");
+//        product.setPrice(0.1);
+//        productRepository.save(product);
         alreadySetup = true;
     }
 

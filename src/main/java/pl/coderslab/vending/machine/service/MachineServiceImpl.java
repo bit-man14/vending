@@ -12,6 +12,7 @@ import pl.coderslab.vending.machine.repository.SlotRepository;
 import pl.coderslab.vending.product.entity.Product;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class MachineServiceImpl implements MachineService {
@@ -26,13 +27,11 @@ public class MachineServiceImpl implements MachineService {
 
 
     @Override
-    @Transactional
     public List<Machine> getMachines() {
         return machineRepository.findAll();
     }
 
     @Override
-    @Transactional
     public void saveMachine(Machine machine) {
         machineRepository.save(machine);
     }
@@ -42,7 +41,7 @@ public class MachineServiceImpl implements MachineService {
     public boolean saveSlot(long mach_id) {
         Machine machine = getMachine(mach_id);
         SlotConfig slotConfig;
-        Product product=new Product();
+        Product product = new Product();
         product.setId(1L);
         int sh = machine.getShelves();
         int sl = machine.getSlotsPerShelf();
@@ -80,13 +79,11 @@ public class MachineServiceImpl implements MachineService {
     }
 
     @Override
-    @Transactional
     public void saveEditSlot(SlotConfig slotConfig) {
         slotRepository.save(slotConfig);
     }
 
     @Override
-    @Transactional
     public Machine getMachine(long id) throws ResourceNotFoundException {
         return machineRepository.findById(id).orElseThrow(
                 () -> new ResourceNotFoundException(String.valueOf(id)));
@@ -109,8 +106,8 @@ public class MachineServiceImpl implements MachineService {
     }
 
     @Override
-    public List<SlotConfig> findByMachine_idAndActive(Long machine_id) {
-        return slotRepository.findByMachine_idAndActive(machine_id);
+    public List<SlotConfig> findByMachineId(Long machine_id) {
+        return slotRepository.findByMachineId(machine_id);
     }
 
 
