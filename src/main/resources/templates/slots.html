@@ -42,7 +42,7 @@
                     <th>Slot ID</th>
                     <th>Slot No</th>
                     <th>Active</th>
-                    <th>Product</th>
+                    <th>Product (suggested spiral size)</th>
                     <th>Price</th>
                     <th>Spiral size</th>
 
@@ -58,7 +58,7 @@
                     <td th:text="${slot.id}"/>
                     <td th:text="${slot.slotNo}"/>
                     <td th:text="${slot.isActive}"/>
-                    <td th:text="${slot.product.name}"/>
+                    <td th:text="${slot.product.name} + ' (' + ${slot.product.forSpiralSize} + ')'"/>
                     <td th:text="${slot.product.price}"/>
                     <td th:text="${slot.spiralSize}"/>
 <!--                    example of condition-->

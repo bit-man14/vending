@@ -41,8 +41,10 @@ public class MachineController {
     @GetMapping("/slots/{mach_id}")
     public String slotsByMachine(@PathVariable Long mach_id, Model model) {
         List<SlotConfig> slotConfigList = machineServiceImpl.findByMachineId(mach_id);
+        //List<Product> products = productServiceImpl.getProducts();
 
         model.addAttribute("slots", slotConfigList);
+        //model.addAttribute("products", products);
         return "slots";
     }
 

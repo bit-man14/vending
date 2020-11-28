@@ -71,11 +71,11 @@
                 </div>
 
                 <div class="form-group">
-                    <label for="product" class="control-label">Product</label>
+                    <label for="product" class="control-label">Product (suggested spiral size)</label>
                     <select class="form-control" name="product">
                         <option id="product" th:each="product : ${products}"
                                 th:value="${product.id}"
-                                th:text="${product.name}"
+                                th:text="${product.name} + ' (' + ${product.forSpiralSize} + ')'"
                                 th:field="*{product}">
                         </option>
                     </select>

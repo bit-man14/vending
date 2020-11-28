@@ -31,10 +31,10 @@ INSERT INTO pack_shape (name) VALUES ('pouch');
 INSERT INTO pack_shape (name) VALUES ('box');
 INSERT INTO pack_shape (name) VALUES ('bar');
 INSERT INTO pack_shape (name) VALUES ('cup');
-INSERT INTO pack_shape (name) VALUES ('empty');
+INSERT INTO pack_shape (name) VALUES ('---empty---');
 #available products
 SET @@auto_increment_increment=1;
-INSERT INTO products (name, packshape_id, for_spiral_size,price) VALUES ('Empty Product for new config', 7,6,0.1);
+INSERT INTO products (name, packshape_id, for_spiral_size,price) VALUES ('---empty---', 7,6,0.1);
 INSERT INTO products (name, packshape_id, for_spiral_size,price) VALUES ('Paluszki', 3,10,2);
 INSERT INTO products (name, packshape_id, for_spiral_size,price) VALUES ('Krakersy', 3,10,2.5);
 INSERT INTO products (name, packshape_id, for_spiral_size,price) VALUES ('Chipsy', 3,10,3);
@@ -89,7 +89,7 @@ INSERT INTO products (name, packshape_id, for_spiral_size,price) VALUES ('Czekol
 INSERT INTO products (name, packshape_id, for_spiral_size,price) VALUES ('Czekolada z mlekiem', 6,1,1.8);
 INSERT INTO products (name, packshape_id, for_spiral_size,price) VALUES ('Kawa z czekoladą', 6,1,1.8);
 INSERT INTO products (name, packshape_id, for_spiral_size,price) VALUES ('Kawa z czekoladą i mlekiem', 6,1,1.8);
-#active slots
+#slot assignment
 SET @@auto_increment_increment=1;
 INSERT INTO slot_config (is_active,machine_id, slot_no, product_id, spiral_size) VALUES (false, 1,10,1,0);
 INSERT INTO slot_config (is_active,machine_id, slot_no, product_id, spiral_size) VALUES (true, 1,11,2,10);
@@ -136,19 +136,17 @@ INSERT INTO slot_config (is_active,machine_id, slot_no, product_id, spiral_size)
 INSERT INTO slot_config (is_active,machine_id, slot_no, product_id, spiral_size) VALUES (true, 1,62,39,8);
 INSERT INTO slot_config (is_active,machine_id, slot_no, product_id, spiral_size) VALUES (true, 1,63,40,8);
 INSERT INTO slot_config (is_active,machine_id, slot_no, product_id, spiral_size) VALUES (true, 1,64,41,8);
-INSERT INTO slot_config (is_active,machine_id, slot_no, product_id, spiral_size) VALUES (true, 1,65,41,8);
-INSERT INTO slot_config (is_active,machine_id, slot_no, product_id, spiral_size) VALUES (true, 1,66,42,8);
-INSERT INTO slot_config (is_active,machine_id, slot_no, product_id, spiral_size) VALUES (true, 1,67,42,8);
-INSERT INTO slot_config (is_active,machine_id, slot_no, product_id, spiral_size) VALUES (true,2,1,43,1);
-INSERT INTO slot_config (is_active,machine_id, slot_no, product_id, spiral_size) VALUES (true,2,2,44,1);
-INSERT INTO slot_config (is_active,machine_id, slot_no, product_id, spiral_size) VALUES (true,2,3,45,1);
-INSERT INTO slot_config (is_active,machine_id, slot_no, product_id, spiral_size) VALUES (true,2,4,46,1);
-INSERT INTO slot_config (is_active,machine_id, slot_no, product_id, spiral_size) VALUES (true,2,5,47,1);
-INSERT INTO slot_config (is_active,machine_id, slot_no, product_id, spiral_size) VALUES (true,2,6,48,1);
-INSERT INTO slot_config (is_active,machine_id, slot_no, product_id, spiral_size) VALUES (true,2,7,49,1);
-INSERT INTO slot_config (is_active,machine_id, slot_no, product_id, spiral_size) VALUES (true,2,8,50,1);
-INSERT INTO slot_config (is_active,machine_id, slot_no, product_id, spiral_size) VALUES (true,2,9,51,1);
-INSERT INTO slot_config (is_active,machine_id, slot_no, product_id, spiral_size) VALUES (true,2,10,52,1);
-INSERT INTO slot_config (is_active,machine_id, slot_no, product_id, spiral_size) VALUES (true,2,11,53,1);
-INSERT INTO slot_config (is_active,machine_id, slot_no, product_id, spiral_size) VALUES (true,2,12,54,1);
+INSERT INTO slot_config (is_active,machine_id, slot_no, product_id, spiral_size) VALUES (true, 1,65,42,8);
+INSERT INTO slot_config (is_active,machine_id, slot_no, product_id, spiral_size) VALUES (true, 1,66,43,8);
+INSERT INTO slot_config (is_active,machine_id, slot_no, product_id, spiral_size) VALUES (true,2,1,44,1);
+INSERT INTO slot_config (is_active,machine_id, slot_no, product_id, spiral_size) VALUES (true,2,2,45,1);
+INSERT INTO slot_config (is_active,machine_id, slot_no, product_id, spiral_size) VALUES (true,2,3,46,1);
+INSERT INTO slot_config (is_active,machine_id, slot_no, product_id, spiral_size) VALUES (true,2,4,47,1);
+INSERT INTO slot_config (is_active,machine_id, slot_no, product_id, spiral_size) VALUES (true,2,5,48,1);
+INSERT INTO slot_config (is_active,machine_id, slot_no, product_id, spiral_size) VALUES (true,2,6,49,1);
+INSERT INTO slot_config (is_active,machine_id, slot_no, product_id, spiral_size) VALUES (true,2,7,50,1);
+INSERT INTO slot_config (is_active,machine_id, slot_no, product_id, spiral_size) VALUES (true,2,8,51,1);
+INSERT INTO slot_config (is_active,machine_id, slot_no, product_id, spiral_size) VALUES (true,2,9,52,1);
+INSERT INTO slot_config (is_active,machine_id, slot_no, product_id, spiral_size) VALUES (true,2,10,53,1);
+INSERT INTO slot_config (is_active,machine_id, slot_no, product_id, spiral_size) VALUES (true,2,11,54,1);
 
