@@ -47,7 +47,7 @@ public class UserServiceImpl implements UserService {
 
     }
 
-
+    @Transactional
     public void saveEdit(User user) {
         if (user.getPassword() != null) {
             user.setPassword(passwordEncoder.encode(user.getPassword()));

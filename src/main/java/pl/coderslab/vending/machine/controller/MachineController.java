@@ -78,9 +78,9 @@ public class MachineController {
 
         machineServiceImpl.deleteSlotByMachineId(id);
         if (machineServiceImpl.saveSlot(id)) {
-            return "Saved slots for machine id = " + id;
+            return "Created empty slots for machine id = " + id;
         } else {
-            return "Missing data to generate slots for id = " + id;
+            return "Missing data to create slots for id = " + id;
         }
 
     }

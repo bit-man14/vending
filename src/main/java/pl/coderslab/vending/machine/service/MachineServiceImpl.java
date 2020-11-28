@@ -38,6 +38,7 @@ public class MachineServiceImpl implements MachineService {
 
 
     @Override
+    @Transactional
     public boolean saveSlot(long mach_id) {
         Machine machine = getMachine(mach_id);
         SlotConfig slotConfig;
@@ -53,7 +54,7 @@ public class MachineServiceImpl implements MachineService {
             for (int j = 1; j <= sl; j++) {
                 slotConfig = new SlotConfig();
                 slotConfig.setSlotNo(j);
-                slotConfig.setSpiralSize(0);//default value
+                slotConfig.setSpiralSize(1);//default value
                 slotConfig.setActive(true);
                 slotConfig.setMachine_id(mach_id);
                 slotConfig.setProduct(product);
@@ -79,6 +80,7 @@ public class MachineServiceImpl implements MachineService {
     }
 
     @Override
+    @Transactional
     public void saveEditSlot(SlotConfig slotConfig) {
         slotRepository.save(slotConfig);
     }

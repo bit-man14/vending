@@ -36,7 +36,7 @@ public class Machine {
     @Max(20)
     private int slotsPerShelf;
 
-    @OneToMany
+    @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @JoinColumn(name = "machine_id")
     private List<SlotConfig> slots = new ArrayList<>();
 

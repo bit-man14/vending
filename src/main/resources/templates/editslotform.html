@@ -50,7 +50,7 @@
                     <!--                    <div th:if="${#fields.hasErrors('id')}" th:errors="*{id}">Name Error</div>-->
                 </div>
                 <div class="form-group">
-                    <label for="mach_id" class="control-label"> Mach Id</label>
+<!--                    <label for="mach_id" class="control-label"> Mach Id</label>-->
                     <input id="mach_id" type="hidden" class="form-control" th:field="*{machine_id}" readonly="readonly">
                     <!--                    <div th:if="${#fields.hasErrors('id')}" th:errors="*{id}">Name Error</div>-->
                 </div>
@@ -83,7 +83,7 @@
 
                 <div class="form-group" th:classappend="${#fields.hasErrors('isActive')}? 'has-error':''">
                     <label for="isActive" class="control-label">Active</label>
-                    <input id="isActive" type="checkbox" th:field="*{isActive}" th:value="${slot.isActive}"/>
+                    <input id="isActive" type="checkbox" th:field="${slot.isActive}"/>
                     <!-- <input id="isActive" type="checkbox" name="isActive" th:checked="${user.isActive} ? 'checked'"/>&lt;!&ndash; było th:checked&ndash;&gt;-->
                     <span class="error-message" th:each="error : ${#fields.errors('isActive')}" th:text="${error}">
                         Validation error</span>

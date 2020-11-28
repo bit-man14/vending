@@ -39,7 +39,8 @@ public class ProductController {
 
     @GetMapping("/products")
     public String listProducts(Model model) {
-        return findPaginated(1, "name", "asc", model);
+
+        return findPaginated(1, "id", "asc", model);
     }
 
     @GetMapping("/products/page/{pageNum}")
@@ -76,7 +77,7 @@ public class ProductController {
     @GetMapping("/editproduct/{id}")
     public String editProductForm(@PathVariable Long id, Model model) {
         Product product = productServiceImpl.getProduct(id);
-        List<PackShape> packShapes=productServiceImpl.getPackshape();
+        List<PackShape> packShapes = productServiceImpl.getPackshape();
         model.addAttribute("product", product);
         model.addAttribute("packshapes", packShapes);
         return "editproductform";
@@ -85,7 +86,8 @@ public class ProductController {
     @PostMapping("/editproduct")
     public String editProduct(@Valid Product product, BindingResult result) {
         if (result.hasErrors()) {
-            return "editproductform";
+            Long id = product.getId();
+            return "redirect:/editproduct/" + id;
         }
 
         productServiceImpl.saveProduct(product);
