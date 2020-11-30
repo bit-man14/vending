@@ -57,18 +57,24 @@ public class MachineController {
     @GetMapping("/editmachine/{id}")
     public String editMachineForm(@PathVariable Long id, Model model) {
         Machine machine = machineServiceImpl.getMachine(id);
+        List<SlotConfig> slots=machineServiceImpl.findByMachineId(id);
         model.addAttribute("machine", machine);
+        model.addAttribute("slots", slots);
         return "editmachineform";
     }
 
     @PostMapping("/editmachine")
-    public String editMachine(@Valid Machine machine, BindingResult result) {
+    public String editMachine(@Valid Machine machine,SlotConfig slotConfig, BindingResult result) {
         if (result.hasErrors()) {
             return "editmachineform";
         }
-        //machineServiceImpl.saveEditSlot();
+        slotConfig.setMachine_id(machine.getId());//test
+        slotConfig.setSlotNo(slotConfig.getSlotNo());
+        slotConfig.setSpiralSize(slotConfig.getSpiralSize());
         machine.setId(machine.getId());//test
+        machineServiceImpl.saveEditSlot(slotConfig);//test
         machineServiceImpl.saveMachine(machine);
+
         return "redirect:/machines?success";
     }
 

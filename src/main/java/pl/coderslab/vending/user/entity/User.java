@@ -116,7 +116,7 @@ public class User {
         this.email = email;
     }
 
-    public boolean getIsActive() {
+    public boolean getActive() {
         return active;
     }
 
@@ -145,9 +145,6 @@ public class User {
         this.roles = roles;
     }
 
-    public boolean isActive() {
-        return active;
-    }
 
     public LocalDateTime getCreatedOn() {
         return createdOn;

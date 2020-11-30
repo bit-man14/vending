@@ -12,7 +12,6 @@ import pl.coderslab.vending.machine.repository.SlotRepository;
 import pl.coderslab.vending.product.entity.Product;
 
 import java.util.List;
-import java.util.Optional;
 
 @Service
 public class MachineServiceImpl implements MachineService {
@@ -55,7 +54,7 @@ public class MachineServiceImpl implements MachineService {
                 slotConfig = new SlotConfig();
                 slotConfig.setSlotNo(j);
                 slotConfig.setSpiralSize(1);//default value
-                slotConfig.setActive(true);
+                slotConfig.setIsActive(true);
                 slotConfig.setMachine_id(mach_id);
                 slotConfig.setProduct(product);
                 slotRepository.save(slotConfig);
@@ -68,7 +67,7 @@ public class MachineServiceImpl implements MachineService {
                     slotConfig = new SlotConfig();
                     slotConfig.setSlotNo(slNo);
                     slotConfig.setSpiralSize(6);//default value
-                    slotConfig.setActive(true);
+                    slotConfig.setIsActive(true);
                     slotConfig.setMachine_id(mach_id);
                     slotConfig.setProduct(product);
                     slotRepository.save(slotConfig);
