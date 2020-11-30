@@ -24,7 +24,9 @@ public class ProductController {
 
     @GetMapping("/addproduct")
     public String addProductForm(Model model) {
+        List<PackShape> packShapes = productServiceImpl.getPackshape();
         model.addAttribute("product", new Product());
+        model.addAttribute("packshapes", packShapes);
         return "addproductform";
     }
 
@@ -33,6 +35,7 @@ public class ProductController {
         if (bindingResult.hasErrors()) {
             return "addproductform";
         }
+        product.setPackShape(product.getPackShape());
         productServiceImpl.saveProduct(product);
         return "redirect:/products?success";
     }
@@ -86,10 +89,11 @@ public class ProductController {
     @PostMapping("/editproduct")
     public String editProduct(@Valid Product product, BindingResult result) {
         if (result.hasErrors()) {
-            Long id = product.getId();
-            return "redirect:/editproduct/" + id;
+            //Long id = product.getId();
+            return "redirect:/editproduct";// + id;
         }
-
+        //Long packId = (Long) model.getAttribute("packId");
+        //product.setPackShape(packId);
         productServiceImpl.saveProduct(product);
         return "redirect:/products?success";
     }

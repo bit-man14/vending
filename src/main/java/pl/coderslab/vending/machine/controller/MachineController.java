@@ -57,9 +57,9 @@ public class MachineController {
     @GetMapping("/editmachine/{id}")
     public String editMachineForm(@PathVariable Long id, Model model) {
         Machine machine = machineServiceImpl.getMachine(id);
-        //List<SlotConfig> slots=machineServiceImpl.findByMachineId(id);
+        List<SlotConfig> slots=machineServiceImpl.findByMachineId(id);//slots from current machine
         model.addAttribute("machine", machine);
-        //model.addAttribute("slots", slots);
+        model.addAttribute("slots", slots);
         return "editmachineform";
     }
 

@@ -6,14 +6,12 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
-import pl.coderslab.vending.machine.entity.Machine;
 import pl.coderslab.vending.product.entity.PackShape;
 import pl.coderslab.vending.product.entity.Product;
 import pl.coderslab.vending.product.repository.PackRepository;
 import pl.coderslab.vending.product.repository.ProductRepository;
 
 import java.util.List;
-import java.util.Optional;
 
 @Service
 public class ProductServiceImpl implements ProductService {
@@ -32,6 +30,10 @@ public class ProductServiceImpl implements ProductService {
         return productRepository.findAll();
     }
 
+    public PackShape getPackShapeById(long id)  throws ResourceNotFoundException {
+        return packRepository.findById(id).orElseThrow(
+                () -> new ResourceNotFoundException(String.valueOf(id)));
+    }
 
 
 
