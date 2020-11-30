@@ -10,6 +10,27 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
           integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
     <title>Slots in machine</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 2rem;
+        }
+
+        table {
+            text-align: left;
+            position: relative;
+            border-collapse: collapse;
+        }
+        th, td {
+            padding: 0.25rem;
+        }
+        th {
+            background: white;
+            position: sticky;
+            top: 100px; /* Don't forget this, required for the stickiness */
+            box-shadow: 0 2px 2px -1px rgba(0, 0, 0, 0.4);
+        }
+    </style>
 </head>
 <body>
 <nav class="navbar navbar-inverse navbar-fixed-top">
@@ -39,12 +60,12 @@
             <table class="table table-bordered">
                 <thead>
                 <tr>
-                    <th>Slot ID</th>
-                    <th>Slot No</th>
-                    <th>Active</th>
-                    <th>Product (suggested spiral size)</th>
-                    <th>Price</th>
-                    <th>Spiral size</th>
+                    <th style="text-align:center" >Slot ID</th>
+                    <th style="text-align:center" >Slot No</th>
+                    <th style="text-align:center" >Active</th>
+                    <th style="text-align:center" >Product (suggested spiral size)</th>
+                    <th style="text-align:center" >Price</th>
+                    <th style="text-align:center" >Spiral size</th>
 
                     <div th:if="${#authorization.expression('hasAnyAuthority(''ADMIN'',''USER'')')}">
                         <th>Edit Link</th>
@@ -54,9 +75,9 @@
                 </tr>
                 </thead>
                 <tbody>
-                <tr th:each="slot:${slots}">
+                <tr style="text-align:center" th:each="slot:${slots}">
                     <td th:text="${slot.id}"/>
-                    <td th:text="${slot.slotNo}"/>
+                    <td th:text="${slot.slotNo}" />
                     <td th:text="${slot.isActive}"/>
                     <td th:text="${slot.product.name} + ' (' + ${slot.product.forSpiralSize} + ')'"/>
                     <td th:text="${slot.product.price}"/>
