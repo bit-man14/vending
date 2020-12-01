@@ -6,6 +6,9 @@ Vending Master is a simple web-based application created to support owners of ve
 
 Just go to [https://vending-master.herokuapp.com/](https://vending-master.herokuapp.com/) to try the application 
 (*not always working - heroku DB works according to its own rules* :smiley: )
+1. ADMIN  test user       *tom@gmail.com*,    pwd:*111*
+2. USER   test user       *tom1@gmail.com*,   pwd:*111*
+3. READER test user       *tom2@gmail.com*,   pwd:*111*
 
 
 ## Main Features
