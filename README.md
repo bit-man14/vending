@@ -24,10 +24,14 @@ Menu:
 
 ## Technologies used in project
 - Java 8
+- Maven
 - Spring
 - Hibernate
 - Thymeleaf
 
 ## Plans for the future
 
-File interpreter to read all usefull data from machine logs. So far file center is just web file storage.
+File interpreter to read all usefull data from machine logs. So far, the file center is just a web file storage.
+
+## Contact
+[Tomasz Kalwasiński](mailto:tomasz.kski@gmail.com)
