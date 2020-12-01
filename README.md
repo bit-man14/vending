@@ -13,16 +13,16 @@ Just go to [https://vending-master.herokuapp.com/](https://vending-master.heroku
 
 ## Main Features
 
-**Spring Security**, including new user registration and full user management for ADMIN. 
-Users can get roles assigned by admin. ADMIN - full access and rights to manage all users. 
-USER - can edit and contribute but without deletion. READER - only contribution and reading.
+**Spring Security**, including new user registration and full user management for ADMIN.<br />
+Users can get roles assigned by the ADMIN.<br />ADMIN - has full access and rights to manage all users.<br />
+USER - can edit and contribute, but without deletion.<br />READER - only contribution and reading.
 
-Menu:
+**Menu:**
 - **File** **Center** - you can upload multiple files of any type. Function intended for machine logs and future stock update.
-- **Machines** - list of all vending machines. If you have sufficient priviliges you can edit any data of machine. Special function is Slot Generator. 
-  Based on number of shelves and number of slots on shelf it generates slot layout specific for this machine. You can see all products assignet for machine, 
-  edit them, block some slots to create double slots for bigger products or in case of malfunction. Extra feature - floating header.
-- **Products** - full paginated list of products with sorting function. You can edit individual products. Its name, price, packaging type, size.
+- **Machines** - list of all vending machines. If you have sufficient privileges you can edit any data of machine.<br /> Special function is Slot Generator. 
+  Based on number of shelves and number of slots on shelf it generates slot layout specific for this machine.<br /> You can see all products assigned to the machine, 
+  edit them, block some slots to create double slots for bigger products or in case of malfunction.<br />An extra feature - floating header.
+- **Products** - fully paginated list of products with sorting function.<br />You can edit individual products. Its name, price, packaging type, size.
 - **Users** - visible only for ADMIN - full user management.
 
 ## Technologies used in project
@@ -33,8 +33,9 @@ Menu:
 - Thymeleaf
 
 ## Plans for the future
-
-File interpreter to read all useful data from machine logs. So far, the file center is just a web file storage.
+- **Stock management**
+- **File interpreter** to read all useful data from machine logs via the machine printer port (RS 232). <br />
+So far, the **File Center** is just a web file storage.
 
 ## Contact
 [Tomasz Kalwasiński](mailto:tomasz.kski@gmail.com)
