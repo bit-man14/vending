@@ -22,7 +22,7 @@ Menu:
 - **Products** - full paginated list of products with sorting function. You can edit individual products. Its name, price, packaging type, size.
 - **Users** - visible only for ADMIN - full user management.
 
-##Technologies used in project
+## Technologies used in project
 - Java 8
 - Spring
 - Hibernate
