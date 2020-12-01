@@ -10,7 +10,7 @@ Just go to [https://vending-master.herokuapp.com/](https://vending-master.heroku
 
 ## Main Features
 
-Security, including new user registration and full user management for ADMIN. 
+**Spring Security**, including new user registration and full user management for ADMIN. 
 Users can get roles assigned by admin. ADMIN - full access and rights to manage all users. 
 USER - can edit and contribute but without deletion. READER - only contribution and reading.
 
@@ -21,6 +21,12 @@ Menu:
   edit them, block some slots to create double slots for bigger products or in case of malfunction. Extra feature - floating header.
 - **Products** - full paginated list of products with sorting function. You can edit individual products. Its name, price, packaging type, size.
 - **Users** - visible only for ADMIN - full user management.
+
+##Technologies used in project
+- Java 8
+- Spring
+- Hibernate
+- Thymeleaf
 
 ## Plans for the future
 
