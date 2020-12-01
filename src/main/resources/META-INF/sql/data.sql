@@ -1,10 +1,12 @@
 #increment for Heroku
 #machines
 SET @@auto_increment_increment=1;
+SET @@auto_increment_offset=1;
 INSERT INTO machines (name, serial, type, inst_date, shelves, slots_per_shelf) VALUES ('Rondo', '123456', 'spiralki', '2020-01-01', 6, 8);
 INSERT INTO machines (name, serial, type, inst_date, shelves, slots_per_shelf) VALUES ('Eva', '987654', 'drinks', '2019-01-01',1,10);
 #users
 SET @@auto_increment_increment=1;
+SET @@auto_increment_offset=1;
 INSERT INTO users (email, name, password, active) VALUES ('tom@gmail.com','Tom', '$2a$10$BG4Khz7k/8pS0JyU4WI0CeiDDGeXREmffzAA9xwU91o5Clu9QKNPe', TRUE);
 INSERT INTO users (email, name, password, active) VALUES ('tom1@gmail.com','Adam', '$2a$10$BG4Khz7k/8pS0JyU4WI0CeiDDGeXREmffzAA9xwU91o5Clu9QKNPe', TRUE);
 INSERT INTO users (email, name, password, active) VALUES ('tom2@gmail.com','Guest', '$2a$10$BG4Khz7k/8pS0JyU4WI0CeiDDGeXREmffzAA9xwU91o5Clu9QKNPe', TRUE);
@@ -12,11 +14,13 @@ INSERT INTO users (email, name, password, active) VALUES ('tom3@gmail.com','Józ
 INSERT INTO users (email, name, password, active) VALUES ('admin@admin.com','Admin', '$2a$10$fZN1YKQJNwiGHsAQyiWRfOLlJV8zSr2iKh6u52PKVVyMc7siG.QSG', TRUE);
 #possible roles
 SET @@auto_increment_increment=1;
+SET @@auto_increment_offset=1;
 INSERT INTO `roles` (`name`) VALUES ('ADMIN');
 INSERT INTO `roles` (`name`) VALUES ('USER');
 INSERT INTO `roles` (`name`) VALUES ('READER');
 #roles for demo only
 SET @@auto_increment_increment=1;
+SET @@auto_increment_offset=1;
 INSERT INTO users_roles (user_id, role_id) VALUES (1, 1);
 INSERT INTO users_roles (user_id, role_id) VALUES (2, 2);
 INSERT INTO users_roles (user_id, role_id) VALUES (2, 3);
@@ -25,6 +29,7 @@ INSERT INTO users_roles (user_id, role_id) VALUES (4, 3);
 INSERT INTO users_roles (user_id, role_id) VALUES (5, 1);
 #possible package shape
 SET @@auto_increment_increment=1;
+SET @@auto_increment_offset=1;
 INSERT INTO pack_shape (name) VALUES ('can');
 INSERT INTO pack_shape (name) VALUES ('bottle');
 INSERT INTO pack_shape (name) VALUES ('pouch');
@@ -34,6 +39,7 @@ INSERT INTO pack_shape (name) VALUES ('cup');
 INSERT INTO pack_shape (name) VALUES ('---empty---');
 #available products
 SET @@auto_increment_increment=1;
+SET @@auto_increment_offset=1;
 INSERT INTO products (name, packshape_id, for_spiral_size,price) VALUES ('---empty---', 7,6,0.1);
 INSERT INTO products (name, packshape_id, for_spiral_size,price) VALUES ('Paluszki', 3,10,2);
 INSERT INTO products (name, packshape_id, for_spiral_size,price) VALUES ('Krakersy', 3,10,2.5);
@@ -91,6 +97,7 @@ INSERT INTO products (name, packshape_id, for_spiral_size,price) VALUES ('Kawa z
 INSERT INTO products (name, packshape_id, for_spiral_size,price) VALUES ('Kawa z czekoladą i mlekiem', 6,1,1.8);
 #slot assignment
 SET @@auto_increment_increment=1;
+SET @@auto_increment_offset=1;
 INSERT INTO slot_config (is_active,machine_id, slot_no, product_id, spiral_size) VALUES (false, 1,10,1,1);
 INSERT INTO slot_config (is_active,machine_id, slot_no, product_id, spiral_size) VALUES (true, 1,11,2,10);
 INSERT INTO slot_config (is_active,machine_id, slot_no, product_id, spiral_size) VALUES (false, 1,12,1,1);
