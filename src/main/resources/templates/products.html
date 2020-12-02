@@ -81,7 +81,7 @@
                     <div th:if="${#authorization.expression('hasAnyAuthority(''ADMIN'',''USER'')')}">
                         <td><a th:href="@{'/editproduct/'+${product.id}}">Edit</a></td>
                     </div>
-                    <div th:if="${#authorization.expression('hasAuthority(''ADMIN'')')}">
+                    <div th:if="${#authorization.expression('hasAuthority(''ADMIN'')')} and ${product.id}>1">
                         <td><a th:href="@{'/deleteproduct/'+${product.id}}">Delete</a></td>
                     </div>
                 </tr>

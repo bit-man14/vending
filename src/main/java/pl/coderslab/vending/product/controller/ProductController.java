@@ -73,7 +73,10 @@ public class ProductController {
 
     @GetMapping("/deleteproduct/{id}")
     public String delete(@PathVariable Long id) {
-        productServiceImpl.deleteById(id);
+        if(id>1){
+            productServiceImpl.deleteById(id);
+        }
+
         return "redirect:/products";
     }
 
@@ -89,11 +92,9 @@ public class ProductController {
     @PostMapping("/editproduct")
     public String editProduct(@Valid Product product, BindingResult result) {
         if (result.hasErrors()) {
-            //Long id = product.getId();
-            return "redirect:/editproduct";// + id;
+            return "redirect:/editproduct";
         }
-        //Long packId = (Long) model.getAttribute("packId");
-        //product.setPackShape(packId);
+
         productServiceImpl.saveProduct(product);
         return "redirect:/products?success";
     }
