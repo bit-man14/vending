@@ -22,7 +22,8 @@
                     class="icon-bar"></span>
             </button>
             <a class="navbar-brand" href="#" th:href="@{/}">HOME</a>
-            <a th:if="${#authorization.expression('hasAnyAuthority(''ADMIN'',''USER'')')}">
+
+            <a th:if="${#authorization.expression('hasAuthority(''ADMIN'')')}">
                 <a class="navbar-brand" href="#" th:href="@{/addmachine}">Add machine</a>
             </a>
 
