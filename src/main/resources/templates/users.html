@@ -20,7 +20,8 @@
                     class="icon-bar"></span> <span class="icon-bar"></span> <span
                     class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="#" th:href="@{/}">HOME</a>
+            <a class="navbar-brand glyphicon glyphicon-home" th:href="@{/}" aria-hidden="true"></a>
+            <!--            <a class="navbar-brand" href="#" th:href="@{/}">HOME</a>-->
         </div>
         <a sec:authorize="isAuthenticated()"><a class="navbar-brand"th:href="@{/logout}" style="color: green ">Logout</a></a>
     </div>

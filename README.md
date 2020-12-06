@@ -20,8 +20,8 @@ USER - can edit and contribute, but without deletion.<br />READER - only contrib
 **Menu:**
 - **File** **Center** - you can upload multiple files of any type. Function intended for machine logs and future stock update.
 - **Machines** - list of all vending machines. If you have sufficient privileges you can edit any data of machine.<br /> Special function is Slot Generator. 
-  Based on number of shelves and number of slots on shelf it generates slot layout specific for this machine.<br /> You can see all products assigned to the machine, 
-  edit them, block some slots to create double slots for bigger products or in case of malfunction.<br />An extra feature - floating header.
+  Based on number of shelves and number of slots on shelf it generates slot layout specific for this machine. Available only for ADMIN.<br /> You can see all products assigned to the machine, 
+  edit them, block some slots to create double slots for bigger products or in case of malfunction.<br />**An extra feature** - floating header.
 - **Products** - fully paginated list of products with sorting function.<br />You can edit individual products. Its name, price, packaging type, size.
 - **Users** - visible only for ADMIN - full user management.
 
