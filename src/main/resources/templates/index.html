@@ -12,7 +12,7 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
           integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
     <title>Registration</title>
-    <script src="clock.js"></script>
+    <script src="JS/clock.js" ></script>
 </head>
 
 <body onload="odliczanie();">
@@ -35,7 +35,7 @@
             </a>
             <a sec:authorize="isAuthenticated()"><a class="navbar-brand" th:href="@{/logout}" style="color: green">Logout</a></a>
 
-            <div id="clock" class="navbar-brand" style="color: royalblue">xxxx</div>
+            <div id="clock" class="navbar-brand" style="color: royalblue"></div>
 <!--            <script type="text/javascript">-->
 <!--                document.getElementById("clock").innerHTML = dzien + "/" + miesiac + "/" + rok + "  " + godzina + ":" + minuta + ":" + sekunda;-->
 <!--            </script>-->
@@ -61,7 +61,7 @@
     <p>
 
         <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2503.765851465761!2d16.779314315642253!3d51.13122687957498!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x470fbe146ed2be8f%3A0xa29bbf6a9895f4e7!2sPolna%208%2C%2055-330%20Lutynia!5e0!3m2!1spl!2spl!4v1607160616917!5m2!1spl!2spl"
-                width="600" height="450" frameborder="0" style="border:0;" allowfullscreen="" aria-hidden="false"
+                width="600" height="450" frameborder="0" style="border:2px;" allowfullscreen="" aria-hidden="false"
                 tabindex="0"></iframe>
     </p>
 </div>
